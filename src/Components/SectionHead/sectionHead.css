@@ -1,0 +1,11 @@
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sectionHead__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

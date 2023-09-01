@@ -1,0 +1,124 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+:root {
+  --pry-clr: #32b768;
+  --sec-clr: #d1fae5;
+  --neutral-clr-light: #f4f4f4;
+  --neutral-clr-dark: #374151;
+  --red-clr: #eb4646;
+  --radius-bg: 26px;
+  --radius-sm: 8px;
+}
+
+body {
+  width: min(500px, 100vw);
+  min-height: 100vh;
+  margin-inline: auto;
+  border: 1px solid var(--neutral-clr-light);
+  background-color: #f7f7f7;
+}
+
+button {
+  outline: none !important;
+  border: none !important;
+}
+
+.h-300 {
+  font-weight: 700;
+  color: var(--neutral-clr-dark);
+  font-size: 24px;
+}
+
+.h-200 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--neutral-clr-dark);
+}
+
+.text-body {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--neutral-clr-dark);
+  line-height: 21px;
+}
+
+.text-small {
+  font-size: 12px;
+  font-weight: 300;
+  color: #6b7280;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-bold {
+  font-weight: 600;
+}
+
+.btn-pry-bg {
+  width: 80%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: var(--pry-clr);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-pry-alt-bg {
+  width: 80%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pry-clr);
+  background: var(--sec-clr);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-pry-sm {
+  width: 88px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: var(--pry-clr);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.btn-sec {
+  width: 80%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neutral-clr-dark);
+  background: var(--neutral-clr-light);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.pointer {
+  cursor: pointer;
+}
