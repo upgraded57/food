@@ -38,6 +38,8 @@ export default function Home() {
 
   const [userLocation, setUserLocation] = useState({});
   const [locationLoading, setLocationLoading] = useState(true);
+  const [locationError, setLocationError] = useState(false);
+
   useEffect(() => {
     setLocationLoading(true);
     const getUserIp = async () => {
@@ -47,11 +49,14 @@ export default function Home() {
           axios
             .get(`http://ip-api.com/json/${res.data.ip}?fields=32789`)
             .then((res) => setUserLocation(res.data))
+            .catch((err) => {
+              setLocationError(false);
+            })
             .finally(() => {
               setLocationLoading(false);
             })
         )
-        .catch((err) => console.log(err))
+        .catch((err) => setLocationError(false))
         .finally(() => {
           setLocationLoading(false);
         });
@@ -61,7 +66,11 @@ export default function Home() {
 
   return (
     <div className="home">
-      <Topbar userLocation={userLocation} locationLoading={locationLoading} />
+      <Topbar
+        userLocation={userLocation}
+        locationLoading={locationLoading}
+        locationError={locationError}
+      />
       <Search />
 
       <Swiper

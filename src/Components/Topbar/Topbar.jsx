@@ -8,7 +8,11 @@ import { CiGrid32 } from "react-icons/ci";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-export default function Topbar({ userLocation, locationLoading }) {
+export default function Topbar({
+  userLocation,
+  locationLoading,
+  locationError,
+}) {
   const [sidebarActive, setSidebarActive] = useState(false);
   return (
     <div className="topbar">
@@ -21,10 +25,14 @@ export default function Topbar({ userLocation, locationLoading }) {
         </div>
         <div className="top-location">
           <MdLocationPin className="icon" />
-          {locationLoading ? (
-            <p className="text-small">Fetching Location...</p>
+          {!locationError ? (
+            locationLoading ? (
+              <p className="text-small">Fetching Location...</p>
+            ) : (
+              <p className="text-small">{`${userLocation.city} - ${userLocation.region}, ${userLocation.country}`}</p>
+            )
           ) : (
-            <p className="text-small">{`${userLocation.city} - ${userLocation.region}, ${userLocation.country}`}</p>
+            <p className="text-small">Couldn't get your location</p>
           )}
         </div>
         <Link to="/profile" className="top-user">
