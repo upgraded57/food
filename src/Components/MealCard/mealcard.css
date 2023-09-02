@@ -7,7 +7,7 @@
 }
 
 .mealCard__img {
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  border-radius: calc(var(--radius-sm) / 2) calc(var(--radius-sm) / 2) 0 0;
   width: 128px;
   max-height: 104px;
   margin-inline: auto;

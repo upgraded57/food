@@ -11,13 +11,7 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import userImg from "../../assets/images/user.jpg";
-import { GoHome, GoHomeFill } from "react-icons/go";
-import { AiFillBook, AiOutlineBook } from "react-icons/ai";
-import { BiSolidUser, BiUser } from "react-icons/bi";
-import { MdKeyboardArrowRight, MdLocationPin } from "react-icons/md";
-import { CgMenuLeft } from "react-icons/cg";
-import { FiSearch } from "react-icons/fi";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 import burgerKingLogo from "../../assets/images/burger-king.png";
 import deliciousBurgerImg from "../../assets/images/set-homemade-delicious-burgers.png";
@@ -26,27 +20,16 @@ import mealImg2 from "../../assets/images/meal2.png";
 import MealCard from "../../Components/MealCard/MealCard";
 import SectionHead from "../../Components/SectionHead/SectionHead";
 import MealList from "../../Components/MealList/MealList";
+import Navbar from "../../Components/Navbar/Navbar";
+import Topbar from "../../Components/Topbar/Topbar";
+import Search from "../../Components/Search/Search";
+import BottomSpace from "../../Components/BottomSpace/BottomSpace";
 
 export default function Home() {
   return (
     <div className="home">
-      <div className="home__top">
-        <div className="home__top-burger">
-          <CgMenuLeft />
-        </div>
-        <div className="home__top-location">
-          <MdLocationPin className="icon" />
-          <p className="text-small">Agrabad 435, Chittagong</p>
-        </div>
-        <div className="home__top-user">
-          <img src={userImg} alt="user image" />
-        </div>
-      </div>
-
-      <div className="home__search">
-        <FiSearch />
-        <input type="text" placeholder="Search" />
-      </div>
+      <Topbar />
+      <Search />
 
       <Swiper
         slidesPerView={1.25}
@@ -131,6 +114,7 @@ export default function Home() {
             title="Today's New Arrivable"
             subtitle="Best of today's food list update"
             linkText="See All"
+            linkLocation="/arrivables"
           />
         </div>
 
@@ -213,20 +197,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="bottom-space"></div>
-      <div className="home__nav">
-        <ul>
-          <li className="active">
-            <GoHomeFill />
-          </li>
-          <li>
-            <AiOutlineBook />
-          </li>
-          <li>
-            <BiUser />
-          </li>
-        </ul>
-      </div>
+      <BottomSpace />
+      <Navbar />
     </div>
   );
 }

@@ -11,6 +11,7 @@
   --neutral-clr-light: #f4f4f4;
   --neutral-clr-dark: #374151;
   --red-clr: #eb4646;
+  --body-clr: #f7f7f7;
   --radius-bg: 26px;
   --radius-sm: 8px;
 }
@@ -20,7 +21,7 @@ body {
   min-height: 100vh;
   margin-inline: auto;
   border: 1px solid var(--neutral-clr-light);
-  background-color: #f7f7f7;
+  background-color: var(--body-clr);
 }
 
 button {
@@ -55,6 +56,10 @@ button {
 
 .text-center {
   text-align: center;
+}
+
+.text-normal {
+  font-weight: 500 !important;
 }
 
 .text-bold {

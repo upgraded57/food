@@ -1,0 +1,119 @@
+.restaurant {
+  width: min(500px, 100vw);
+  overflow-x: hidden;
+}
+
+.restaurant__top {
+  height: 54px;
+  width: 100%;
+  background: var(--pry-clr);
+  color: white;
+  border-radius: 0 0 var(--radius-bg) var(--radius-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.restaurant__top-back-icon {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 25px;
+}
+
+.restaurant__top-title {
+  font-size: 14px;
+}
+
+.restaurant__detail {
+  background: white;
+  margin-block: 1vh 2vh;
+  border-radius: var(--radius-bg);
+  padding: 4vw;
+}
+
+.restaurant__detail-top-location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-block: 5px;
+}
+
+.restaurant__detail-top-location .location-icon {
+  color: var(--pry-clr);
+}
+
+.restaurant__detail-img {
+  width: 100%;
+  aspect-ratio: 2/1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-block: 20px;
+}
+
+.restaurant__detail-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.restaurant__detail-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.open-time {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.clock-icon,
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pry-clr);
+}
+
+.restaurant__detail-navigation {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.restaurant__detail-navigation p {
+  color: var(--pry-clr);
+}
+
+.restaurant__book {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(500px, 100vw);
+  padding: 2vh;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.restaurant__book button {
+  background: var(--pry-clr);
+  color: white;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 5px rgba(14, 127, 61, 0.24);
+}
+
+.restaurant__other {
+  padding: 4vw 2vh;
+}

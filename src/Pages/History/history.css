@@ -1,0 +1,15 @@
+.history__top {
+  width: 100%;
+  height: 54px;
+  background: var(--pry-clr);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  border-radius: 0 0 var(--radius-bg) var(--radius-bg);
+}
+
+.history__list {
+  padding: 2vh 4vw;
+}

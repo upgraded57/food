@@ -1,0 +1,28 @@
+.home__nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(500px, 100vw);
+  padding: 2vh 10vw;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+  border-radius: var(--radius-bg) var(--radius-bg) 0 0;
+  background-color: white;
+  z-index: 100;
+}
+
+.home__nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home__nav ul li {
+  font-size: 24px;
+  color: var(--neutral-clr-dark);
+}
+
+.home__nav ul li.active {
+  color: var(--pry-clr);
+}

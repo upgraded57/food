@@ -1,0 +1,14 @@
+.arrivables__meal-cards {
+  padding-inline: 4vw;
+  margin-block: 2vh 4vh;
+  display: flex;
+  align-items: center;
+  max-width: 100vw;
+  gap: 10px;
+  overflow-x: scroll;
+}
+
+.arrivables__restaurants {
+  padding-inline: 4vw;
+  margin-block: 2vh 4vh;
+}
