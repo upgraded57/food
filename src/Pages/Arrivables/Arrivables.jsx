@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./arrivables.css";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
@@ -7,8 +7,17 @@ import SectionHead from "../../Components/SectionHead/SectionHead";
 import MealCard from "../../Components/MealCard/MealCard";
 import MealList from "../../Components/MealList/MealList";
 import BottomSpace from "../../Components/BottomSpace/BottomSpace";
+import MealCardPlaceholder from "../../Components/MealCardPlaceholder/MealCardPlaceholder";
+import { fetchMeal } from "../../Api/Apicalls";
 
 export default function Arrivables() {
+  const [loading, setLoading] = useState(null);
+  const [meals, setMeals] = useState([]);
+
+  useEffect(() => {
+    fetchMeal(setLoading, setMeals);
+  }, []);
+
   return (
     <div className="arrivables">
       <Topbar />
@@ -16,41 +25,18 @@ export default function Arrivables() {
       <SectionHead
         title="Today's New Arrivables"
         subtitle="Best of today's food list update"
-        linkText="See All"
+        linkText={false}
         linkLocation="/"
       />
 
       <div className="arrivables__meal-cards">
-        <MealCard
-          mealName="Chicken Biryani"
-          mealLocation="Ambrosia Hotel &
-            Restaurant"
-        />
-        <MealCard
-          mealName="Sauce Tonkatsu "
-          mealLocation="Ambrosia Hotel &
-            Restaurant"
-        />
-        <MealCard
-          mealName="Chicken Biryani"
-          mealLocation="Ambrosia Hotel &
-            Restaurant"
-        />
-        <MealCard
-          mealName="Sauce Tonkatsu "
-          mealLocation="Ambrosia Hotel &
-            Restaurant"
-        />
-        <MealCard
-          mealName="Chicken Biryani"
-          mealLocation="Ambrosia Hotel &
-            Restaurant"
-        />
-        <MealCard
-          mealName="Sauce Tonkatsu "
-          mealLocation="Ambrosia Hotel &
-            Restaurant"
-        />
+        {loading ? (
+          <MealCardPlaceholder />
+        ) : (
+          meals.map((meal) => {
+            return <MealCard key={meal.idMeal} meal={meal} />;
+          })
+        )}
       </div>
 
       <SectionHead

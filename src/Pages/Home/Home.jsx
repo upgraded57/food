@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./home.css";
 
 // Import Swiper React components
@@ -24,8 +24,17 @@ import Navbar from "../../Components/Navbar/Navbar";
 import Topbar from "../../Components/Topbar/Topbar";
 import Search from "../../Components/Search/Search";
 import BottomSpace from "../../Components/BottomSpace/BottomSpace";
+import { fetchMeal } from "../../Api/Apicalls";
+import MealCardPlaceholder from "../../Components/MealCardPlaceholder/MealCardPlaceholder";
 
 export default function Home() {
+  const [loading, setLoading] = useState(null);
+  const [meals, setMeals] = useState([]);
+
+  useEffect(() => {
+    fetchMeal(setLoading, setMeals);
+  }, []);
+
   return (
     <div className="home">
       <Topbar />
@@ -119,54 +128,13 @@ export default function Home() {
         </div>
 
         <div className="home__new-arrivals-cards">
-          <MealCard
-            mealImg={mealImg1}
-            mealName="Chicken Biryani"
-            mealLocation="Ambrosia Hotel & Restaurant"
-          />
-          <MealCard
-            mealImg={mealImg2}
-            mealName="Sauce Tonkatsu"
-            mealLocation="Handi Restaurant,
-          Chittagong
-          "
-          />
-          <MealCard
-            mealImg={mealImg1}
-            mealName="Chicken Biryani"
-            mealLocation="Ambrosia Hotel & Restaurant"
-          />
-          <MealCard
-            mealImg={mealImg2}
-            mealName="Sauce Tonkatsu"
-            mealLocation="Handi Restaurant,
-          Chittagong
-          "
-          />
-          <MealCard
-            mealImg={mealImg1}
-            mealName="Chicken Biryani"
-            mealLocation="Ambrosia Hotel & Restaurant"
-          />
-          <MealCard
-            mealImg={mealImg2}
-            mealName="Sauce Tonkatsu"
-            mealLocation="Handi Restaurant,
-          Chittagong
-          "
-          />
-          <MealCard
-            mealImg={mealImg1}
-            mealName="Chicken Biryani"
-            mealLocation="Ambrosia Hotel & Restaurant"
-          />
-          <MealCard
-            mealImg={mealImg2}
-            mealName="Sauce Tonkatsu"
-            mealLocation="Handi Restaurant,
-          Chittagong
-          "
-          />
+          {loading ? (
+            <MealCardPlaceholder />
+          ) : (
+            meals.map((meal) => {
+              return <MealCard key={meal.idMeal} meal={meal} />;
+            })
+          )}
         </div>
       </div>
 

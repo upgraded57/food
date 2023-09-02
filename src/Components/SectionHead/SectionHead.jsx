@@ -15,13 +15,15 @@ export default function SectionHead({
         <h2 className="h-200">{title}</h2>
         <p className="text-body">{subtitle}</p>
       </span>
-      <Link
-        to={linkLocation ? linkLocation : "/"}
-        className="sectionHead__link"
-      >
-        <p className="text-body">{linkText}</p>
-        <MdArrowForwardIos />
-      </Link>
+      {linkText && (
+        <Link
+          to={linkLocation ? linkLocation : "/"}
+          className="sectionHead__link"
+        >
+          <p className="text-body">{linkText}</p>
+          <MdArrowForwardIos />
+        </Link>
+      )}
     </div>
   );
 }
