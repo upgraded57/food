@@ -26,6 +26,7 @@ import Search from "../../Components/Search/Search";
 import BottomSpace from "../../Components/BottomSpace/BottomSpace";
 import { fetchMeal } from "../../Api/Apicalls";
 import MealCardPlaceholder from "../../Components/MealCardPlaceholder/MealCardPlaceholder";
+import axios from "axios";
 
 export default function Home() {
   const [loading, setLoading] = useState(null);
@@ -35,9 +36,32 @@ export default function Home() {
     fetchMeal(setLoading, setMeals);
   }, []);
 
+  const [userLocation, setUserLocation] = useState({});
+  const [locationLoading, setLocationLoading] = useState(true);
+  useEffect(() => {
+    setLocationLoading(true);
+    const getUserIp = async () => {
+      await axios
+        .get("https://api.ipify.org?format=json")
+        .then((res) =>
+          axios
+            .get(`http://ip-api.com/json/${res.data.ip}?fields=32789`)
+            .then((res) => setUserLocation(res.data))
+            .finally(() => {
+              setLocationLoading(false);
+            })
+        )
+        .catch((err) => console.log(err))
+        .finally(() => {
+          setLocationLoading(false);
+        });
+    };
+    getUserIp();
+  }, []);
+
   return (
     <div className="home">
-      <Topbar />
+      <Topbar userLocation={userLocation} locationLoading={locationLoading} />
       <Search />
 
       <Swiper

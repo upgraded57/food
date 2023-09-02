@@ -1,18 +1,19 @@
 .restaurant {
   width: min(500px, 100vw);
-  overflow-x: hidden;
 }
 
 .restaurant__top {
-  height: 54px;
   width: 100%;
+  padding: 2.5vh 4vw;
   background: var(--pry-clr);
   color: white;
   border-radius: 0 0 var(--radius-bg) var(--radius-bg);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  position: sticky;
+  top: 0;
   overflow: hidden;
 }
 
@@ -33,7 +34,7 @@
 
 .restaurant__detail {
   background: white;
-  margin-block: 1vh 2vh;
+  margin-block: 2vh;
   border-radius: var(--radius-bg);
   padding: 4vw;
 }

@@ -7,12 +7,14 @@ import { Link } from "react-router-dom";
 
 export default function MealList({ name, location, history }) {
   return (
-    <Link to="/restaurant" className="restaurant-list">
-      <div className="restaurant-list__img">
+    <div className="restaurant-list">
+      <Link to="/restaurant" className="restaurant-list__img">
         <img src={restaurant} alt="" />
-      </div>
+      </Link>
       <div className="restaurant-list__content">
-        <h2 className="h-200">{name}</h2>
+        <Link to="/restaurant">
+          <h2 className="h-200">{name}</h2>
+        </Link>
         <div className="restaurant-list__content-details">
           <div className="restaurant-list__content-details-location">
             <MdLocationPin className="location-icon" />
@@ -23,6 +25,6 @@ export default function MealList({ name, location, history }) {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

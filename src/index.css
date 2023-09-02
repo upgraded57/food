@@ -12,8 +12,14 @@
   --neutral-clr-dark: #374151;
   --red-clr: #eb4646;
   --body-clr: #f7f7f7;
+  --body-clr-dark: #dddddd;
   --radius-bg: 26px;
   --radius-sm: 8px;
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit;
 }
 
 body {
