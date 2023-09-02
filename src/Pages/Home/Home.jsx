@@ -50,13 +50,14 @@ export default function Home() {
             .get(`http://ip-api.com/json/${res.data.ip}?fields=32789`)
             .then((res) => setUserLocation(res.data))
             .catch((err) => {
-              setLocationError(false);
+              console.log(err);
+              setLocationError(true);
             })
             .finally(() => {
               setLocationLoading(false);
             })
         )
-        .catch((err) => setLocationError(false))
+        .catch((err) => setLocationError(true))
         .finally(() => {
           setLocationLoading(false);
         });
