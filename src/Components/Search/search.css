@@ -2,7 +2,7 @@
   margin-block: 2vh;
   margin-inline: auto;
   width: 80%;
-  background: #e6e7e9;
+  background: var(--body-clr-dark);
   padding: 5px 20px;
   border-radius: var(--radius-sm);
   display: flex;

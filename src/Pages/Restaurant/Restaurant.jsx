@@ -1,86 +1,113 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./restaurant.css";
 
-import {
-  BiLeftArrowAlt,
-  BiSolidTimeFive,
-  BiSolidNavigation,
-} from "react-icons/bi";
+import { BiLeftArrowAlt } from "react-icons/bi";
 import { MdLocationPin } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { GoHome } from "react-icons/go";
+import { useNavigate, useParams } from "react-router-dom";
 
 import BottomSpace from "../../Components/BottomSpace/BottomSpace";
 import SectionHead from "../../Components/SectionHead/SectionHead";
 import MealList from "../../Components/MealList/MealList";
 
-import tempRestaurantImg from "../../assets/images/rest1.png";
+import { comingSoon, fetchMealById, fetchMealList } from "../../Api/Apicalls";
+import MealListPlaceHolder from "../../Components/MealListPlaceholder/MealListPlaceHolder";
+import ImageModal from "../../Components/ImageModal/ImageModal";
+import MealPlaceholder from "../../Components/MealPlaceholder/MealPlaceholder";
 
 export default function Restaurant() {
   const navigate = useNavigate();
+
+  const { meal_id } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [meal, setMeal] = useState({});
+
+  useEffect(() => {
+    fetchMealById(meal_id, setLoading, setMeal);
+  }, [meal_id]);
+
+  //meals loading fetch
+  const [mealListLoading, setMealListLoading] = useState(null);
+  const [mealLists, setMealLists] = useState([]);
+
+  useEffect(() => {
+    fetchMealList(setMealListLoading, setMealLists);
+  }, []);
+
+  // show image modal
+  const [imageModal, setImageModal] = useState(false);
+
   return (
     <div className="restaurant">
       <div className="restaurant__top">
         <div className="restaurant__top-back-icon" onClick={() => navigate(-1)}>
           <BiLeftArrowAlt />
         </div>
-        <div className="restaurant__top-title">Restaurant Details</div>
+        <div className="restaurant__top-title">Meal Details</div>
+        <div
+          className="restaurant__top-back-icon"
+          onClick={() => navigate("/")}
+        >
+          <GoHome />
+        </div>
       </div>
-      <div className="restaurant__detail">
-        <div className="restaurant__detail-top">
-          <span>
-            <h2 className="h-200">Tava Restaurant</h2>
-            <span className="restaurant__detail-top-location">
-              <MdLocationPin className="location-icon" />
-              <p className="text-small">kazi Deiry, Taiger Pass,Chittagong</p>
-            </span>
-          </span>
-        </div>
-        <div className="restaurant__detail-img">
-          <img src={tempRestaurantImg} alt="" />
-        </div>
-
-        <div className="restaurant__detail-bottom">
-          <div className="restaurant__detail-time">
-            <span className="open-time">
-              <span className="clock-icon">
-                <BiSolidTimeFive />
+      {loading ? (
+        <MealPlaceholder />
+      ) : (
+        <div className="restaurant__detail">
+          <div className="restaurant__detail-top">
+            <span>
+              <h2 className="h-200">{meal.strMeal}</h2>
+              <span className="restaurant__detail-top-location">
+                <MdLocationPin className="location-icon" />
+                <p className="text-small">{meal.strArea}</p>
               </span>
-              <p className="text-small">Open Today</p>
             </span>
-            <p className="text-body text-bold">10:00am - 12:00pm</p>
           </div>
-          <div className="restaurant__detail-navigation">
-            <span className="nav-icon">
-              <BiSolidNavigation />
-            </span>
-            <p className="text-body">Visit Restaurant</p>
+          <div
+            className="restaurant__detail-img"
+            onClick={() => setImageModal(true)}
+          >
+            <img src={meal.strMealThumb} alt="" />
+          </div>
+
+          <div className="restaurant__detail-bottom">
+            <p className="text-body text-bold">Ingredients</p>
+            <div className="restaurant__detail-bottom-food-tags">
+              {meal.strIngredient1 && <span>{meal.strIngredient1}</span>}
+              {meal.strIngredient2 && <span>{meal.strIngredient2}</span>}
+              {meal.strIngredient3 && <span>{meal.strIngredient3}</span>}
+              {meal.strIngredient4 && <span>{meal.strIngredient4}</span>}
+              {meal.strIngredient5 && <span>{meal.strIngredient5}</span>}
+              {meal.strIngredient6 && <span>{meal.strIngredient6}</span>}
+              {meal.strIngredient7 && <span>{meal.strIngredient7}</span>}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <SectionHead
-        title="Similar Restaurants"
-        subtitle="See similar restaurants around here"
+        title="Similar Meals"
+        subtitle="See similar meals around here"
         linkText="See All"
-        linkLocation="/"
+        linkLocation="/arrivables"
       />
       <div className="restaurant__other">
-        <MealList
-          name="Ambrosia Hotel"
-          location="kazi Deiry, Taiger Pass
-            Chittagong"
-        />
-        <MealList
-          name="Tava Restaurant"
-          location="Zakir Hossain Rd, Chittagong"
-        />
-        <MealList name="Haatkhola" location="6 Surson Road, Chittagong" />
+        {mealListLoading ? (
+          <MealListPlaceHolder />
+        ) : (
+          mealLists.slice(0, 4).map((mealList) => {
+            return <MealList key={mealList.idMeal} meal={mealList} history />;
+          })
+        )}
       </div>
 
       <BottomSpace />
       <div className="restaurant__book">
-        <button>Book This Restaurant</button>
+        <button onClick={comingSoon}>Order This Meal</button>
       </div>
+
+      {imageModal && <ImageModal meal={meal} setImageModal={setImageModal} />}
     </div>
   );
 }

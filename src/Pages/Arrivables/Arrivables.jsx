@@ -8,7 +8,8 @@ import MealCard from "../../Components/MealCard/MealCard";
 import MealList from "../../Components/MealList/MealList";
 import BottomSpace from "../../Components/BottomSpace/BottomSpace";
 import MealCardPlaceholder from "../../Components/MealCardPlaceholder/MealCardPlaceholder";
-import { fetchMeal } from "../../Api/Apicalls";
+import { fetchMeal, fetchMealList } from "../../Api/Apicalls";
+import MealListPlaceHolder from "../../Components/MealListPlaceholder/MealListPlaceHolder";
 
 export default function Arrivables() {
   const [loading, setLoading] = useState(null);
@@ -16,6 +17,14 @@ export default function Arrivables() {
 
   useEffect(() => {
     fetchMeal(setLoading, setMeals);
+  }, []);
+
+  //meals loading fetch
+  const [mealListLoading, setMealListLoading] = useState(null);
+  const [mealLists, setMealLists] = useState([]);
+
+  useEffect(() => {
+    fetchMealList(setMealListLoading, setMealLists);
   }, []);
 
   return (
@@ -47,36 +56,13 @@ export default function Arrivables() {
       />
 
       <div className="arrivables__restaurants">
-        <MealList
-          name="Ambrosia Hotel & Restaurant"
-          location="kazi Deiry, Taiger Pass
-            Chittagong"
-        />
-        <MealList
-          name="Tava Restaurant"
-          location="Zakir Hossain Rd, Chittagong"
-        />
-        <MealList name="Haatkhola" location="6 Surson Road, Chittagong" />
-        <MealList
-          name="Ambrosia Hotel & Restaurant"
-          location="kazi Deiry, Taiger Pass
-            Chittagong"
-        />
-        <MealList
-          name="Tava Restaurant"
-          location="Zakir Hossain Rd, Chittagong"
-        />
-        <MealList name="Haatkhola" location="6 Surson Road, Chittagong" />
-        <MealList
-          name="Ambrosia Hotel & Restaurant"
-          location="kazi Deiry, Taiger Pass
-            Chittagong"
-        />
-        <MealList
-          name="Tava Restaurant"
-          location="Zakir Hossain Rd, Chittagong"
-        />
-        <MealList name="Haatkhola" location="6 Surson Road, Chittagong" />
+        {mealListLoading ? (
+          <MealListPlaceHolder />
+        ) : (
+          mealLists.map((mealList) => {
+            return <MealList key={mealList.idMeal} meal={mealList} />;
+          })
+        )}
       </div>
 
       <BottomSpace />

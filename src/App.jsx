@@ -10,6 +10,7 @@ const Arrivables = React.lazy(() => import("./Pages/Arrivables/Arrivables"));
 const Restaurant = React.lazy(() => import("./Pages/Restaurant/Restaurant"));
 const History = React.lazy(() => import("./Pages/History/History"));
 const Profile = React.lazy(() => import("./Pages/Profile/Profile"));
+const UserProfile = React.lazy(() => import("./Pages/UserProfile/UserProfile"));
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
           }
         />
         <Route
-          path="/restaurant"
+          path="/meal/:meal_id"
           element={
             <Suspense fallback={<Loader />}>
               <Restaurant />
@@ -52,6 +53,14 @@ function App() {
           element={
             <Suspense fallback={<Loader />}>
               <Profile />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/profile/user"
+          element={
+            <Suspense fallback={<Loader />}>
+              <UserProfile />
             </Suspense>
           }
         />

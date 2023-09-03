@@ -17,7 +17,7 @@ export default function SectionHead({
       </span>
       {linkText && (
         <Link
-          to={linkLocation ? linkLocation : "/"}
+          to={linkLocation ? linkLocation : "#"}
           className="sectionHead__link"
         >
           <p className="text-body">{linkText}</p>

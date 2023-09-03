@@ -1,29 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./history.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import MealList from "../../Components/MealList/MealList";
+import { fetchMealList } from "../../Api/Apicalls";
+import MealListPlaceHolder from "../../Components/MealListPlaceholder/MealListPlaceHolder";
 
 export default function History() {
+  //meals loading fetch
+  const [mealListLoading, setMealListLoading] = useState(null);
+  const [mealLists, setMealLists] = useState([]);
+
+  useEffect(() => {
+    fetchMealList(setMealListLoading, setMealLists);
+  }, []);
   return (
     <div className="history">
       <div className="history__top">Booking History</div>
       <div className="history__list">
-        <MealList
-          name="Ambrosia Hotel & Restaurant"
-          location="kazi Deiry, Taiger Pass
-        Chittagong"
-          history
-        />
-        <MealList
-          name="Tava Restaurant"
-          location="Zakir Hossain Rd, Chittagong"
-          history
-        />
-        <MealList
-          name="Haatkhola"
-          location="6 Surson Road, Chittagong"
-          history
-        />
+        {mealListLoading ? (
+          <MealListPlaceHolder />
+        ) : (
+          mealLists.map((mealList) => {
+            return <MealList key={mealList.idMeal} meal={mealList} history />;
+          })
+        )}
       </div>
       <Navbar />
     </div>

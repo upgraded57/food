@@ -4,16 +4,17 @@
 
 .restaurant__top {
   width: 100%;
-  padding: 2.5vh 4vw;
+  padding: 1vh 4vw;
   background: var(--pry-clr);
   color: white;
   border-radius: 0 0 var(--radius-bg) var(--radius-bg);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   position: sticky;
   top: 0;
+  z-index: 99;
   overflow: hidden;
 }
 
@@ -21,10 +22,6 @@
   display: flex;
   align-items: center;
   padding: 10px;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
   font-size: 25px;
 }
 
@@ -52,10 +49,14 @@
 
 .restaurant__detail-img {
   width: 100%;
-  aspect-ratio: 2/1;
+  aspect-ratio: 2/1.5;
   border-radius: var(--radius-sm);
   overflow: hidden;
-  margin-block: 20px;
+  margin-block: 10px 20px;
+  background: url("../../assets/images/foodBG.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .restaurant__detail-img img {
@@ -66,32 +67,25 @@
 
 .restaurant__detail-bottom {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.open-time {
-  display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 5px;
 }
 
-.clock-icon,
-.nav-icon {
+.restaurant__detail-bottom-food-tags {
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: var(--pry-clr);
+  gap: 10px;
+  width: 100%;
+  overflow-x: scroll;
 }
 
-.restaurant__detail-navigation {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.restaurant__detail-navigation p {
-  color: var(--pry-clr);
+.restaurant__detail-bottom-food-tags span {
+  font-size: 12px;
+  color: var(--neutral-clr-dark);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--body-clr-dark);
+  min-width: max-content;
 }
 
 .restaurant__book {

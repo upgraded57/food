@@ -1,0 +1,175 @@
+.userprofile {
+  width: min(500px, 100vw);
+}
+
+.userprofile__top {
+  width: 100%;
+  height: 200px;
+  background: url("../../assets/images/Hexagon.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  padding-top: 5vh;
+  position: relative;
+}
+
+.userprofile__top .back-icon {
+  font-size: 25px;
+  display: flex;
+  position: absolute;
+  left: 0;
+  padding-inline: 10px;
+}
+
+.userprofile__user {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  top: -72.5px;
+  gap: 10px;
+  margin-bottom: -60px;
+}
+
+.userprofile__user-avatar {
+  width: 140px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid var(--body-clr);
+}
+
+.userprofile__user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.userprofile__section {
+  margin: 30px 4vw;
+  background: white;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.userprofile__section-head {
+  padding: 5px 4vw;
+  background: var(--body-clr-dark);
+}
+
+.userprofile__section-list {
+  padding: 10px 4vw;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.userprofile__section-list .profile-icon {
+  display: flex;
+  align-items: center;
+  color: var(--neutral-clr-dark);
+}
+
+.userprofile__section-orders {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4vw;
+}
+
+.userprofile__section-order-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.userprofile__section-order-list p {
+  line-height: 1rem !important;
+}
+
+.userprofile__section-order-list .order-circle {
+  width: 60px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 25px;
+}
+
+.userprofile__section-order-list .order-circle.order {
+  background: linear-gradient(135deg, #045de9, #09c6f9);
+}
+
+.userprofile__section-order-list .order-circle.success {
+  background: linear-gradient(135deg, #233329, #63d471);
+}
+
+.userprofile__section-order-list .order-circle.failure {
+  background: linear-gradient(135deg, #ff1053, #f7accf);
+}
+
+.userprofile__section-payments {
+  padding: 0 4vw;
+}
+
+.userprofile__section-payments-card {
+  padding: 15px 0;
+  border-bottom: 1px solid var(--body-clr-dark);
+}
+
+.userprofile__section-payments-card:last-child {
+  border: none;
+}
+
+.userprofile__section-payments-card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.userprofile__section-payments-card-top .card-logo {
+  height: 20px;
+}
+
+.userprofile__section-payments-card-top .card-logo img {
+  height: 100%;
+}
+
+.userprofile__section-payments-card-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.userprofile__section-payments-card-content .card-number-icon {
+  display: flex;
+  align-items: center;
+  color: var(--neutral-clr-dark);
+}
+
+.userprofile__section-payments-card-content .card-number {
+  font-family: "PT Mono", monospace;
+  font-size: 20px;
+  opacity: 0.6;
+}
+
+.userprofile__edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.userprofile__edit-btn button {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+}

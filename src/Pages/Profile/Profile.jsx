@@ -10,11 +10,12 @@ import { PiNotePencilBold, PiUserCircleLight } from "react-icons/pi";
 import { IoIosArrowForward } from "react-icons/io";
 import { FaLanguage } from "react-icons/fa";
 import { AiOutlineStar } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
   return (
     <div className="profile">
-      <div className="profile__card user">
+      <Link to="/profile/user" className="profile__card user">
         <div className="profile__card-left">
           <div className="profile__card-left-img">
             <img src={userImg} alt="" />
@@ -27,7 +28,7 @@ export default function Profile() {
         <div className="profile__card-right">
           <BsBell />
         </div>
-      </div>
+      </Link>
 
       <div className="profile__card">
         <div className="profile__card-left">
@@ -50,7 +51,7 @@ export default function Profile() {
               <FaLanguage />
             </div>
             <div className="profile__card-left-user">
-              <h2 className="h-200 text-normal">Account Settings</h2>
+              <h2 className="h-200 text-normal">Language</h2>
             </div>
           </div>
           <div className="profile__card-right">
@@ -63,7 +64,7 @@ export default function Profile() {
               <BsChatText />
             </div>
             <div className="profile__card-left-user">
-              <h2 className="h-200 text-normal">Account Settings</h2>
+              <h2 className="h-200 text-normal">Feedback</h2>
             </div>
           </div>
           <div className="profile__card-right">
@@ -76,7 +77,7 @@ export default function Profile() {
               <AiOutlineStar />
             </div>
             <div className="profile__card-left-user">
-              <h2 className="h-200 text-normal">Account Settings</h2>
+              <h2 className="h-200 text-normal">Rate Us</h2>
             </div>
           </div>
           <div className="profile__card-right">
@@ -90,7 +91,7 @@ export default function Profile() {
               <BsArrowUpCircle />
             </div>
             <div className="profile__card-left-user">
-              <h2 className="h-200 text-normal">Account Settings</h2>
+              <h2 className="h-200 text-normal">Check for Update</h2>
             </div>
           </div>
           <div className="profile__card-right">

@@ -15,8 +15,6 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 
 import burgerKingLogo from "../../assets/images/burger-king.png";
 import deliciousBurgerImg from "../../assets/images/set-homemade-delicious-burgers.png";
-import mealImg1 from "../../assets/images/meal1.png";
-import mealImg2 from "../../assets/images/meal2.png";
 import MealCard from "../../Components/MealCard/MealCard";
 import SectionHead from "../../Components/SectionHead/SectionHead";
 import MealList from "../../Components/MealList/MealList";
@@ -24,54 +22,30 @@ import Navbar from "../../Components/Navbar/Navbar";
 import Topbar from "../../Components/Topbar/Topbar";
 import Search from "../../Components/Search/Search";
 import BottomSpace from "../../Components/BottomSpace/BottomSpace";
-import { fetchMeal } from "../../Api/Apicalls";
+import { fetchMeal, fetchMealList } from "../../Api/Apicalls";
 import MealCardPlaceholder from "../../Components/MealCardPlaceholder/MealCardPlaceholder";
-import axios from "axios";
+import MealListPlaceHolder from "../../Components/MealListPlaceholder/MealListPlaceHolder";
 
 export default function Home() {
-  const [loading, setLoading] = useState(null);
+  // meals card fetch
+  const [mealsLoading, setMealsLoading] = useState(null);
   const [meals, setMeals] = useState([]);
 
   useEffect(() => {
-    fetchMeal(setLoading, setMeals);
+    fetchMeal(setMealsLoading, setMeals);
   }, []);
 
-  const [userLocation, setUserLocation] = useState({});
-  const [locationLoading, setLocationLoading] = useState(true);
-  const [locationError, setLocationError] = useState(false);
+  //meals loading fetch
+  const [mealListLoading, setMealListLoading] = useState(null);
+  const [mealLists, setMealLists] = useState([]);
 
   useEffect(() => {
-    setLocationLoading(true);
-    const getUserIp = async () => {
-      await axios
-        .get("https://api.ipify.org?format=json")
-        .then((res) =>
-          axios
-            .get(`http://ip-api.com/json/${res.data.ip}?fields=32789`)
-            .then((res) => setUserLocation(res.data))
-            .catch((err) => {
-              console.log(err);
-              setLocationError(true);
-            })
-            .finally(() => {
-              setLocationLoading(false);
-            })
-        )
-        .catch((err) => setLocationError(true))
-        .finally(() => {
-          setLocationLoading(false);
-        });
-    };
-    getUserIp();
+    fetchMealList(setMealListLoading, setMealLists);
   }, []);
 
   return (
     <div className="home">
-      <Topbar
-        userLocation={userLocation}
-        locationLoading={locationLoading}
-        locationError={locationError}
-      />
+      <Topbar />
       <Search />
 
       <Swiper
@@ -162,7 +136,7 @@ export default function Home() {
         </div>
 
         <div className="home__new-arrivals-cards">
-          {loading ? (
+          {mealsLoading ? (
             <MealCardPlaceholder />
           ) : (
             meals.map((meal) => {
@@ -178,24 +152,17 @@ export default function Home() {
             title="Booking Restaurant"
             subtitle="Check your city's nearby Restaurant"
             linkText="See All"
+            linkLocation="/arrivables"
           />
         </div>
         <div className="home__new-arrivals-list">
-          <MealList
-            name="Hotel Zaman Restaurant"
-            location="kazi Deiry, Taiger Pass
-              Chittagong"
-          />
-          <MealList
-            name="Ambrosia Hotel & Restaurant"
-            location="kazi Deiry, Taiger Pass
-                      Chittagong"
-          />
-          <MealList
-            name="Tava Restaurant"
-            location="Zakir Hossain Rd, Chittagong"
-          />
-          <MealList name="Haatkhola" location="6 Surson Road, Chittagong" />
+          {mealListLoading ? (
+            <MealListPlaceHolder />
+          ) : (
+            mealLists.map((mealList) => {
+              return <MealList key={mealList.idMeal} meal={mealList} />;
+            })
+          )}
         </div>
       </div>
 

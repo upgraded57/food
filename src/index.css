@@ -21,7 +21,10 @@ a {
   text-decoration: none !important;
   color: inherit;
 }
-
+html,
+body {
+  scroll-behavior: smooth;
+}
 body {
   width: min(500px, 100vw);
   min-height: 100vh;
@@ -43,6 +46,12 @@ button {
 
 .h-200 {
   font-size: 16px;
+  font-weight: 600;
+  color: var(--neutral-clr-dark);
+}
+
+.h-100 {
+  font-size: 14px;
   font-weight: 600;
   color: var(--neutral-clr-dark);
 }

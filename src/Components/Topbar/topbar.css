@@ -4,7 +4,8 @@
   justify-content: space-between;
   padding: 0 4vw;
   height: 50px;
-  position: sticky;
+  position: fixed;
+  width: 100%;
   top: 0;
   background: var(--body-clr);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -41,7 +42,7 @@
 .sidebar {
   width: 100vw;
   height: calc(100vh - 50px);
-  position: absolute;
+  position: fixed;
   top: 50px;
   left: -100%;
   z-index: 99 !important;

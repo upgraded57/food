@@ -16,6 +16,10 @@
   aspect-ratio: 1/1;
   border-radius: var(--radius-sm);
   overflow: hidden;
+  background: url("../../assets/images/foodBG.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .restaurant-list__img img {

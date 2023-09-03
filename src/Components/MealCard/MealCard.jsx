@@ -1,10 +1,11 @@
 import React from "react";
 import "./mealcard.css";
 import { MdLocationPin } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 export default function MealCard({ meal }) {
   return (
-    <div className="mealCard">
+    <Link to={`/meal/${meal.idMeal}`} className="mealCard">
       <div className="mealCard__img">
         <img
           src={`${meal.strMealThumb}/preview`}
@@ -22,6 +23,6 @@ export default function MealCard({ meal }) {
           <p className="text-small">{meal.strArea}</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
