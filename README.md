@@ -1,8 +1,13 @@
-# React + Vite
+# Food Ordering App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- UI Credit - [Sadek Hossen Rony](https://www.figma.com/@sadekui)
+- Icons Credit - [IconScout](https://iconscout.com/)
+- React Icons - [React-Icons](https://react-icons.github.io/react-icons/search)
 
-Currently, two official plugins are available:
+## Technologies under the hood
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React JS
+- React hot toast
+- Axios
+
+Project still under development and not fully featured yet. Check back periodically for new updates.
