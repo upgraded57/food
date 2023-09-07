@@ -132,7 +132,11 @@ export default function UserProfile() {
       </div>
 
       <div className="userprofile__edit-btn">
-        <button type="button" className="btn-pry-bg">
+        <button
+          type="button"
+          className="btn-pry-bg"
+          onClick={() => navigate("/profile/edit")}
+        >
           Edit Profile Info
         </button>
       </div>

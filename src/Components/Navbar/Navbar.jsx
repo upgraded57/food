@@ -3,7 +3,7 @@ import "./navbar.css";
 
 import { GoHome, GoHomeFill } from "react-icons/go";
 import { AiFillBook, AiOutlineBook } from "react-icons/ai";
-import { BiSolidUser, BiUser } from "react-icons/bi";
+import { BsCart, BsCartFill } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
@@ -25,10 +25,10 @@ export default function Navbar() {
           {location === "/history" ? <AiFillBook /> : <AiOutlineBook />}
         </li>
         <li
-          className={location === "/profile" ? "active" : ""}
-          onClick={() => navigate("/profile")}
+          className={location === "/cart" ? "active" : ""}
+          onClick={() => navigate("/cart")}
         >
-          {location === "/profile" ? <BiSolidUser /> : <BiUser />}
+          {location === "/cart" ? <BsCartFill /> : <BsCart />}
         </li>
       </ul>
     </div>

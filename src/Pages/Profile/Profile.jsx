@@ -21,8 +21,8 @@ export default function Profile() {
             <img src={userImg} alt="" />
           </div>
           <div className="profile__card-left-user">
-            <h2 className="h-200">Sadek Hossen</h2>
-            <p className="text-small">sadekbranding@gmail.com</p>
+            <h2 className="h-200">Jane MacDowells</h2>
+            <p className="text-small">janemcdowells@gmail.com</p>
           </div>
         </div>
         <div className="profile__card-right">
@@ -30,7 +30,7 @@ export default function Profile() {
         </div>
       </Link>
 
-      <div className="profile__card">
+      <Link to="/profile/edit" className="profile__card">
         <div className="profile__card-left">
           <div className="profile__card-left-icon">
             <PiUserCircleLight />
@@ -42,7 +42,7 @@ export default function Profile() {
         <div className="profile__card-right">
           <PiNotePencilBold />
         </div>
-      </div>
+      </Link>
 
       <div className="profile__card-list">
         <div className="profile__card list-item">

@@ -1,0 +1,70 @@
+.searchPage__filter {
+  padding: 0 4vw;
+}
+
+.searchPage__filter-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.searchPage__filter-top span {
+  font-size: 14px;
+  position: relative;
+  color: var(--pry-clr);
+  cursor: pointer;
+}
+
+.searchPage__filter-top span::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 2px;
+  border-radius: 5px;
+  background: var(--pry-clr);
+  transition: 0.2s linear;
+}
+
+.searchPage__filter-top span:hover::before {
+  width: 100%;
+}
+
+.searchPage__filter-bottom {
+  margin-top: 10px;
+  display: flex;
+  gap: 20px;
+  overflow-x: scroll;
+}
+
+.searchPage__filter-bottom span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border-radius: var(--radius-sm);
+}
+
+.searchPage__filter-bottom span img {
+  width: 60px;
+  aspect-ratio: 2/1.5;
+  border-radius: calc(var(--radius-sm) / 2);
+}
+
+.searchPage__filter-bottom span.active {
+  box-shadow: 5px 5px 12px 1px rgba(255, 255, 255, 1) inset,
+    -5px -5px 12px 1px rgba(0, 0, 0, 0.3) inset;
+  -webkit-box-shadow: 5px 5px 12px 1px rgba(255, 255, 255, 1) inset;
+  -moz-box-shadow: 5px 5px 12px 1px rgba(255, 255, 255, 1) inset;
+  -webkit-box-shadow: -5px -5px 12px 1px rgba(0, 0, 0, 0.3) inset;
+  -moz-box-shadow: -5px -5px 12px 1px rgba(0, 0, 0, 0.3) inset;
+  background: var(--pry-clr);
+  color: white;
+}
+
+.searchPage__filter-bottom span.active p {
+  color: white !important;
+}

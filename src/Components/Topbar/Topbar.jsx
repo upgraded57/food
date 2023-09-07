@@ -66,7 +66,7 @@ export default function Topbar() {
               <p className="text-small">Couldn't get your location</p>
             )}
           </div>
-          <Link to="/profile/user" className="top-user">
+          <Link to="/profile" className="top-user">
             <img src={userImg} alt="user image" />
           </Link>
         </div>

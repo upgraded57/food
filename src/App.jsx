@@ -10,6 +10,10 @@ const Arrivables = React.lazy(() => import("./Pages/Arrivables/Arrivables"));
 const Restaurant = React.lazy(() => import("./Pages/Restaurant/Restaurant"));
 const History = React.lazy(() => import("./Pages/History/History"));
 const Profile = React.lazy(() => import("./Pages/Profile/Profile"));
+const Cart = React.lazy(() => import("./Pages/Cart/Cart"));
+const SearchPage = React.lazy(() => import("./Pages/SearchPage/SearchPage"));
+const EditAccount = React.lazy(() => import("./Pages/EditAccount/EditAccount"));
+const NotFound = React.lazy(() => import("./Pages/NotFound/NotFound"));
 const UserProfile = React.lazy(() => import("./Pages/UserProfile/UserProfile"));
 
 function App() {
@@ -49,6 +53,14 @@ function App() {
           }
         />
         <Route
+          path="/search/:search_query"
+          element={
+            <Suspense fallback={<Loader />}>
+              <SearchPage />
+            </Suspense>
+          }
+        />
+        <Route
           path="/profile"
           element={
             <Suspense fallback={<Loader />}>
@@ -65,6 +77,22 @@ function App() {
           }
         />
         <Route
+          path="/cart"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Cart />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/profile/edit"
+          element={
+            <Suspense fallback={<Loader />}>
+              <EditAccount />
+            </Suspense>
+          }
+        />
+        <Route
           path="/onboarding"
           element={
             <Suspense fallback={<Loader />}>
@@ -77,6 +105,14 @@ function App() {
           element={
             <Suspense fallback={<Loader />}>
               <Auth />
+            </Suspense>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<Loader />}>
+              <NotFound />
             </Suspense>
           }
         />

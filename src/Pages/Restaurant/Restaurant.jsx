@@ -14,6 +14,7 @@ import { comingSoon, fetchMealById, fetchMealList } from "../../Api/Apicalls";
 import MealListPlaceHolder from "../../Components/MealListPlaceholder/MealListPlaceHolder";
 import ImageModal from "../../Components/ImageModal/ImageModal";
 import MealPlaceholder from "../../Components/MealPlaceholder/MealPlaceholder";
+import GreenTop from "../../Components/GreenTop/GreenTop";
 
 export default function Restaurant() {
   const navigate = useNavigate();
@@ -39,18 +40,7 @@ export default function Restaurant() {
 
   return (
     <div className="restaurant">
-      <div className="restaurant__top">
-        <div className="restaurant__top-back-icon" onClick={() => navigate(-1)}>
-          <BiLeftArrowAlt />
-        </div>
-        <div className="restaurant__top-title">Meal Details</div>
-        <div
-          className="restaurant__top-back-icon"
-          onClick={() => navigate("/")}
-        >
-          <GoHome />
-        </div>
-      </div>
+      <GreenTop header="Meal Detail" />
       {loading ? (
         <MealPlaceholder />
       ) : (

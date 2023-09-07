@@ -2,33 +2,6 @@
   width: min(500px, 100vw);
 }
 
-.restaurant__top {
-  width: 100%;
-  padding: 1vh 4vw;
-  background: var(--pry-clr);
-  color: white;
-  border-radius: 0 0 var(--radius-bg) var(--radius-bg);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 99;
-  overflow: hidden;
-}
-
-.restaurant__top-back-icon {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  font-size: 25px;
-}
-
-.restaurant__top-title {
-  font-size: 14px;
-}
-
 .restaurant__detail {
   background: white;
   margin-block: 2vh;
