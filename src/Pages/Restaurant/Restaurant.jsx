@@ -94,7 +94,9 @@ export default function Restaurant() {
 
       <BottomSpace />
       <div className="restaurant__book">
-        <button onClick={comingSoon}>Order This Meal</button>
+        <button className="btn-pry-bg" onClick={comingSoon}>
+          Order This Meal
+        </button>
       </div>
 
       {imageModal && <ImageModal meal={meal} setImageModal={setImageModal} />}

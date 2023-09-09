@@ -71,3 +71,31 @@ export const comingSoon = () => {
     },
   });
 };
+
+export const searchMealByName = async (
+  search_query,
+  setSearchLoading,
+  setSearchResults
+) => {
+  setSearchLoading(true);
+  await axiosInstance({
+    method: "get",
+    url: "/search.php?",
+    params: {
+      s: search_query,
+    },
+  })
+    .then((res) => {
+      if (res.data.meals === null) {
+        setSearchResults([]);
+      } else {
+        setSearchResults(res.data.meals);
+      }
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
+    .finally(() => {
+      setSearchLoading(false);
+    });
+};

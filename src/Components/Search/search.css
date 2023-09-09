@@ -1,6 +1,26 @@
 .search {
   margin-block: 2vh;
   margin-inline: auto;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.search__home-btn {
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: var(--pry-clr);
+  color: white;
+  cursor: pointer;
+}
+.search form {
   width: 80%;
   background: var(--body-clr-dark);
   padding: 5px 20px;

@@ -74,14 +74,6 @@
   justify-content: center;
 }
 
-.restaurant__book button {
-  background: var(--pry-clr);
-  color: white;
-  padding: 10px 20px;
-  border-radius: var(--radius-sm);
-  box-shadow: 0 2px 5px rgba(14, 127, 61, 0.24);
-}
-
 .restaurant__other {
   padding: 4vw 2vh;
 }

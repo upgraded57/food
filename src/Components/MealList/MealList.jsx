@@ -4,6 +4,7 @@ import "./mealList.css";
 import restaurant from "../../assets/images/rest1.png";
 import { MdLocationPin } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { comingSoon } from "../../Api/Apicalls";
 
 export default function MealList({ meal, history }) {
   return (
@@ -28,7 +29,7 @@ export default function MealList({ meal, history }) {
             <p className="text-small">{meal.strArea}</p>
           </div>
           <div className="restaurant-list__content-details-cta">
-            <button className="btn-pry-sm">
+            <button className="btn-pry-sm" onClick={comingSoon}>
               {history ? "Check" : "Order"}
             </button>
           </div>
