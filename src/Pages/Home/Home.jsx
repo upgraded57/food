@@ -22,26 +22,14 @@ import Navbar from "../../Components/Navbar/Navbar";
 import Topbar from "../../Components/Topbar/Topbar";
 import Search from "../../Components/Search/Search";
 import BottomSpace from "../../Components/BottomSpace/BottomSpace";
-import { fetchMeal, fetchMealList } from "../../Api/Apicalls";
 import MealCardPlaceholder from "../../Components/MealCardPlaceholder/MealCardPlaceholder";
 import MealListPlaceHolder from "../../Components/MealListPlaceholder/MealListPlaceHolder";
+import useFetchMealLists from "../../Hooks/useFetchMealLists";
+import useFetchMeals from "../../Hooks/useFetchMeals";
 
 export default function Home() {
-  // meals card fetch
-  const [mealsLoading, setMealsLoading] = useState(null);
-  const [meals, setMeals] = useState([]);
-
-  useEffect(() => {
-    fetchMeal(setMealsLoading, setMeals);
-  }, []);
-
-  //meals loading fetch
-  const [mealListLoading, setMealListLoading] = useState(null);
-  const [mealLists, setMealLists] = useState([]);
-
-  useEffect(() => {
-    fetchMealList(setMealListLoading, setMealLists);
-  }, []);
+  const { mealListLoading, mealLists } = useFetchMealLists();
+  const { loading, meals } = useFetchMeals();
 
   return (
     <div className="home">
@@ -136,7 +124,7 @@ export default function Home() {
         </div>
 
         <div className="home__new-arrivals-cards">
-          {mealsLoading ? (
+          {loading ? (
             <MealCardPlaceholder />
           ) : (
             meals.map((meal) => {

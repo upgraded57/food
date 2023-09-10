@@ -2,17 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./history.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import MealList from "../../Components/MealList/MealList";
-import { fetchMealList } from "../../Api/Apicalls";
 import MealListPlaceHolder from "../../Components/MealListPlaceholder/MealListPlaceHolder";
+import useFetchMealLists from "../../Hooks/useFetchMealLists";
 
 export default function History() {
-  //meals loading fetch
-  const [mealListLoading, setMealListLoading] = useState(null);
-  const [mealLists, setMealLists] = useState([]);
-
-  useEffect(() => {
-    fetchMealList(setMealListLoading, setMealLists);
-  }, []);
+  const { mealListLoading, mealLists } = useFetchMealLists();
   return (
     <div className="history">
       <div className="history__top">Booking History</div>

@@ -15,6 +15,7 @@ import MealListPlaceHolder from "../../Components/MealListPlaceholder/MealListPl
 import ImageModal from "../../Components/ImageModal/ImageModal";
 import MealPlaceholder from "../../Components/MealPlaceholder/MealPlaceholder";
 import GreenTop from "../../Components/GreenTop/GreenTop";
+import useFetchMealLists from "../../Hooks/useFetchMealLists";
 
 export default function Restaurant() {
   const navigate = useNavigate();
@@ -28,12 +29,7 @@ export default function Restaurant() {
   }, [meal_id]);
 
   //meals loading fetch
-  const [mealListLoading, setMealListLoading] = useState(null);
-  const [mealLists, setMealLists] = useState([]);
-
-  useEffect(() => {
-    fetchMealList(setMealListLoading, setMealLists);
-  }, []);
+  const { mealListLoading, mealLists } = useFetchMealLists();
 
   // show image modal
   const [imageModal, setImageModal] = useState(false);

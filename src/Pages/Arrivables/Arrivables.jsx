@@ -8,24 +8,13 @@ import MealCard from "../../Components/MealCard/MealCard";
 import MealList from "../../Components/MealList/MealList";
 import BottomSpace from "../../Components/BottomSpace/BottomSpace";
 import MealCardPlaceholder from "../../Components/MealCardPlaceholder/MealCardPlaceholder";
-import { fetchMeal, fetchMealList } from "../../Api/Apicalls";
 import MealListPlaceHolder from "../../Components/MealListPlaceholder/MealListPlaceHolder";
+import useFetchMealLists from "../../Hooks/useFetchMealLists";
+import useFetchMeals from "../../Hooks/useFetchMeals";
 
 export default function Arrivables() {
-  const [loading, setLoading] = useState(null);
-  const [meals, setMeals] = useState([]);
-
-  useEffect(() => {
-    fetchMeal(setLoading, setMeals);
-  }, []);
-
-  //meals loading fetch
-  const [mealListLoading, setMealListLoading] = useState(null);
-  const [mealLists, setMealLists] = useState([]);
-
-  useEffect(() => {
-    fetchMealList(setMealListLoading, setMealLists);
-  }, []);
+  const { mealListLoading, mealLists } = useFetchMealLists();
+  const { loading, meals } = useFetchMeals();
 
   return (
     <div className="arrivables">
