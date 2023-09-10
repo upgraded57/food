@@ -5,13 +5,13 @@ import "./searchpage.css";
 
 import Topbar from "../../Components/Topbar/Topbar";
 import Search from "../../Components/Search/Search";
-import MealListPlaceHolder from "../../Components/MealListPlaceHolder/MealListPlaceHolder";
 import MealList from "../../Components/MealList/MealList";
 
 import tempFilterImg1 from "../../assets/images/meal1.png";
 import tempFilterImg2 from "../../assets/images/meal2.png";
 import noResultImg from "../../assets/images/404img.png";
 import { searchMealByName } from "../../Api/Apicalls";
+import MealListPlaceHolder from "../../Components/MealListPlaceholder/MealListPlaceHolder";
 
 export default function SearchPage() {
   const { search_query } = useParams();
