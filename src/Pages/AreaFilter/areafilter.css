@@ -1,0 +1,12 @@
+.categoriesfilter {
+  margin-block: 2vh;
+  padding: 0 2vw;
+}
+
+.view-more-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}

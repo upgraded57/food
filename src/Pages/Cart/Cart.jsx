@@ -1,6 +1,6 @@
 import React from "react";
 import "./cart.css";
-import GreenTop from "../../Components/GreenTop/GreenTop";
+import Topbar from "../../Components/Topbar/Topbar";
 import BottomSpace from "../../Components/BottomSpace/BottomSpace";
 
 import { AiOutlineMinusSquare, AiOutlinePlusSquare } from "react-icons/ai";
@@ -12,8 +12,10 @@ import { comingSoon } from "../../Api/Apicalls";
 export default function Cart() {
   return (
     <div className="cart">
-      <GreenTop header="Cart" />
-
+      <Topbar />
+      <h2 className="h-200 text-center" style={{ marginTop: "20px" }}>
+        My Cart
+      </h2>
       <div className="cart__container">
         <div className="cart__item">
           <div className="cart__item-img">

@@ -1,0 +1,17 @@
+.area {
+  margin-block: 20px;
+}
+
+.area__list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 4vw;
+  border-bottom: 1px solid var(--body-clr-dark);
+  color: var(--text-clr);
+  transition: 0.2s;
+}
+
+.area__list:hover {
+  background: var(--body-clr-dark);
+}

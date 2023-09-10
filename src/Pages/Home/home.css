@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 .home__highlights-reel.reel-1 {
@@ -60,6 +61,28 @@
   color: white !important;
 }
 
+.home__highlights-reel-image {
+  width: 250px;
+  border-radius: calc(var(--radius-bg) / 2);
+  overflow: hidden;
+}
+
+.home__highlights-reel-image.category-page {
+  position: relative;
+  right: 10px;
+}
+
+.home__highlights-reel-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.home__highlights-reel-image.category-page img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+}
 .swiper-pagination-bullet-active {
   transform: scale(1.5);
   background: #00cb66 !important;

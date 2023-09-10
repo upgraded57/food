@@ -99,3 +99,60 @@ export const searchMealByName = async (
       setSearchLoading(false);
     });
 };
+
+export const getMealCategories = async (setLoading, setMealCategories) => {
+  setLoading(true);
+  await axiosInstance({
+    method: "get",
+    url: "/categories.php",
+  })
+    .then((res) => {
+      setMealCategories(res.data.categories);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+};
+
+export const getMealsByCategory = async (setLoading, setMeals, category) => {
+  setLoading(true);
+  await axiosInstance({
+    method: "get",
+    url: "/filter.php",
+    params: {
+      c: category,
+    },
+  })
+    .then((res) => {
+      setMeals(res.data.meals);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+};
+
+export const getMealsByArea = async (setLoading, setMeals, area) => {
+  setLoading(true);
+  await axiosInstance({
+    method: "get",
+    url: "/filter.php",
+    params: {
+      a: area,
+    },
+  })
+    .then((res) => {
+      setMeals(res.data.meals);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+};

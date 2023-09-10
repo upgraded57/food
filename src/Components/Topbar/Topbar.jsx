@@ -7,13 +7,16 @@ import { VscLayoutMenubar } from "react-icons/vsc";
 import { BsSortUp } from "react-icons/bs";
 import { MdLocationPin, MdOutlineDeliveryDining } from "react-icons/md";
 import { TbMapPinSearch } from "react-icons/tb";
+import { GoHome } from "react-icons/go";
 import { AiOutlineClose, AiOutlineFire } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { FiSearch } from "react-icons/fi";
+import { Link, useNavigate } from "react-router-dom";
 import TopSpace from "../TopSpace/TopSpace";
 import axios from "axios";
 import { comingSoon } from "../../Api/Apicalls";
 
 export default function Topbar() {
+  const navigate = useNavigate();
   const [sidebarActive, setSidebarActive] = useState(false);
 
   const [userLocation, setUserLocation] = useState({});
@@ -79,6 +82,15 @@ export default function Topbar() {
           <div className="sidebar__bar">
             <li
               className="sidebar__bar-link"
+              onClick={() => (setSidebarActive(false), navigate("/"))}
+            >
+              <div className="sidebar__bar-link-icon">
+                <GoHome />
+              </div>
+              <p className="text-body">Home</p>
+            </li>
+            <li
+              className="sidebar__bar-link"
               onClick={() => (setSidebarActive(false), comingSoon())}
             >
               <div className="sidebar__bar-link-icon">
@@ -88,7 +100,7 @@ export default function Topbar() {
             </li>
             <li
               className="sidebar__bar-link"
-              onClick={() => (setSidebarActive(false), comingSoon())}
+              onClick={() => (setSidebarActive(false), navigate("/categories"))}
             >
               <div className="sidebar__bar-link-icon">
                 <BsSortUp />
@@ -115,12 +127,23 @@ export default function Topbar() {
             </li>
             <li
               className="sidebar__bar-link"
-              onClick={() => (setSidebarActive(false), comingSoon())}
+              onClick={() => (setSidebarActive(false), navigate("/area"))}
             >
               <div className="sidebar__bar-link-icon">
                 <TbMapPinSearch />
               </div>
               <p className="text-body">Browse by Regions</p>
+            </li>
+            <li
+              className="sidebar__bar-link"
+              onClick={() => (
+                setSidebarActive(false), navigate('/search/" " ')
+              )}
+            >
+              <div className="sidebar__bar-link-icon">
+                <FiSearch />
+              </div>
+              <p className="text-body">Search Meal</p>
             </li>
           </div>
         </div>

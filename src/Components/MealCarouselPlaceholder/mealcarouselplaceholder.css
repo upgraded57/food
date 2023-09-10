@@ -1,0 +1,69 @@
+.mealcarouselplaceholder {
+  width: 80%;
+  height: auto;
+  background: white;
+  margin-inline: auto;
+  border-radius: var(--radius-bg);
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  gap: 20px;
+}
+
+.mealcarouselplaceholder__left {
+  flex-basis: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mealcarouselplaceholder__right {
+  flex-basis: 40%;
+}
+
+.mealcarouselplaceholder__left-name,
+.mealcarouselplaceholder__left-text,
+.mealcarouselplaceholder__left-btn,
+.mealcarouselplaceholder__right-img {
+  background: var(--body-clr);
+  border-radius: calc(var(--radius-sm) / 2);
+  animation: animateBg 3s linear alternate infinite;
+}
+
+.mealcarouselplaceholder__left-name {
+  width: 90%;
+  height: 20px;
+}
+.mealcarouselplaceholder__left-text {
+  width: 100%;
+  height: 10px;
+}
+
+.mealcarouselplaceholder__left-text:nth-child(4) {
+  width: 70% !important;
+}
+
+.mealcarouselplaceholder__left-btn {
+  width: 50%;
+  height: 30px;
+}
+
+.mealcarouselplaceholder__right-img {
+  width: 100%;
+  height: 100px;
+}
+
+@keyframes animateBg {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

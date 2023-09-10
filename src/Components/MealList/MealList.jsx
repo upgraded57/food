@@ -6,7 +6,7 @@ import { MdLocationPin } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { comingSoon } from "../../Api/Apicalls";
 
-export default function MealList({ meal, history }) {
+export default function MealList({ meal, history, location }) {
   return (
     <div className="restaurant-list">
       <Link to={`/meal/${meal.idMeal}`} className="restaurant-list__img">
@@ -26,7 +26,13 @@ export default function MealList({ meal, history }) {
         <div className="restaurant-list__content-details">
           <div className="restaurant-list__content-details-location">
             <MdLocationPin className="location-icon" />
-            <p className="text-small">{meal.strArea}</p>
+            <p className="text-small">
+              {meal.strArea
+                ? meal.strArea
+                : location
+                ? location
+                : "Location Unavailable"}
+            </p>
           </div>
           <div className="restaurant-list__content-details-cta">
             <button className="btn-pry-sm" onClick={comingSoon}>
