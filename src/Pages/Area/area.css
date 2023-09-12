@@ -15,3 +15,25 @@
 .area__list:hover {
   background: var(--body-clr-dark);
 }
+
+.area__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.area__left img {
+  width: 60px;
+}
+
+.area__loader {
+  padding-inline: 4vw;
+}
+
+.area .view-more-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}

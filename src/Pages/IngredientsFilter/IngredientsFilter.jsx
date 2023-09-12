@@ -3,9 +3,9 @@ import Topbar from "../../Components/Topbar/Topbar";
 import Search from "../../Components/Search/Search";
 import SectionHead from "../../Components/SectionHead/SectionHead";
 import "../Home/home.css";
-import "./categoriesfilter.css";
+import "../AreaFilter/areafilter.css";
 import { useEffect, useState } from "react";
-import { getMealsByCategory } from "../../Api/Apicalls";
+import { getMealsByIngredients } from "../../Api/Apicalls";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 // Import Swiper React components
@@ -21,13 +21,13 @@ import MealList from "../../Components/MealList/MealList";
 import toast from "react-hot-toast";
 import Loader from "../../Components/Loader/Loader";
 
-export default function CategoriesFilter() {
-  const { category } = useParams();
+export default function IngredientsFilter() {
+  const { ingredient } = useParams();
   const [loading, setLoading] = useState(true);
   const [meals, setMeals] = useState([]);
 
   useEffect(() => {
-    getMealsByCategory(setLoading, setMeals, category);
+    getMealsByIngredients(setLoading, setMeals, ingredient);
   }, []);
 
   const bgArray = [
@@ -62,8 +62,8 @@ export default function CategoriesFilter() {
       <Topbar />
       <Search />
       <SectionHead
-        title={`Top ${category} Meals`}
-        subtitle={`Most sought after ${category.toLowerCase()} from around you`}
+        title={`Top ${ingredient} Meals`}
+        subtitle={`Most sought after ${ingredient.toLowerCase()} from around you`}
       />
 
       <div className="categoriesfilter">
@@ -117,8 +117,8 @@ export default function CategoriesFilter() {
         )}
       </div>
       <SectionHead
-        title={`Browse All ${category} Meals`}
-        subtitle={`Check out a broad list of ${category.toLowerCase()} meals`}
+        title={`Browse All ${ingredient} Meals`}
+        subtitle={`Check out a broad list of ${ingredient.toLowerCase()} meals`}
       />
 
       <div className="categoriesfilter">
@@ -133,15 +133,17 @@ export default function CategoriesFilter() {
         </div>
       </div>
 
-      <div className="view-more-btn">
-        <button
-          type="button"
-          className="btn-pry-bg"
-          onClick={increasePagination}
-        >
-          View More
-        </button>
-      </div>
+      {pageNum <= meals.length && (
+        <div className="view-more-btn">
+          <button
+            type="button"
+            className="btn-pry-bg"
+            onClick={increasePagination}
+          >
+            View More
+          </button>
+        </div>
+      )}
     </>
   );
 }

@@ -17,10 +17,9 @@ import { Pagination } from "swiper/modules";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import MealCarouselPlaceholder from "../../Components/MealCarouselPlaceholder/MealCarouselPlaceholder";
 import MealList from "../../Components/MealList/MealList";
-import MealListPlaceHolder from "../../Components/MealListPlaceholder/MealListPlaceHolder";
 import toast from "react-hot-toast";
+import Loader from "../../Components/Loader/Loader";
 
 export default function CategoriesFilter() {
   const { area } = useParams();
@@ -57,7 +56,6 @@ export default function CategoriesFilter() {
       setPageNum((prev) => prev + 9);
     }
   };
-  console.log(meals);
 
   return (
     <>
@@ -70,7 +68,7 @@ export default function CategoriesFilter() {
 
       <div className="categoriesfilter">
         {loading ? (
-          <MealCarouselPlaceholder />
+          <Loader type="carousel" />
         ) : (
           <Swiper
             slidesPerView={1.25}
@@ -126,7 +124,7 @@ export default function CategoriesFilter() {
       <div className="categoriesfilter">
         <div className="categoriesfilter__list">
           {loading ? (
-            <MealListPlaceHolder />
+            <Loader type="list" />
           ) : (
             meals.slice(0, pageNum).map((meal) => {
               return <MealList meal={meal} key={meal.idMeal} location={area} />;

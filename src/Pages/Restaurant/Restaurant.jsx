@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./restaurant.css";
 
-import { BiLeftArrowAlt } from "react-icons/bi";
 import { MdLocationPin } from "react-icons/md";
-import { GoHome } from "react-icons/go";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 
 import BottomSpace from "../../Components/BottomSpace/BottomSpace";
 import SectionHead from "../../Components/SectionHead/SectionHead";
 import MealList from "../../Components/MealList/MealList";
 
-import { comingSoon, fetchMealById, fetchMealList } from "../../Api/Apicalls";
-import MealListPlaceHolder from "../../Components/MealListPlaceholder/MealListPlaceHolder";
+import { comingSoon, fetchMealById } from "../../Api/Apicalls";
 import ImageModal from "../../Components/ImageModal/ImageModal";
-import MealPlaceholder from "../../Components/MealPlaceholder/MealPlaceholder";
 import GreenTop from "../../Components/GreenTop/GreenTop";
 import useFetchMealLists from "../../Hooks/useFetchMealLists";
+import Loader from "../../Components/Loader/Loader";
 
 export default function Restaurant() {
   const navigate = useNavigate();
@@ -38,7 +35,7 @@ export default function Restaurant() {
     <div className="restaurant">
       <GreenTop header="Meal Detail" />
       {loading ? (
-        <MealPlaceholder />
+        <Loader type="meal" />
       ) : (
         <div className="restaurant__detail">
           <div className="restaurant__detail-top">
@@ -60,13 +57,55 @@ export default function Restaurant() {
           <div className="restaurant__detail-bottom">
             <p className="text-body text-bold">Ingredients</p>
             <div className="restaurant__detail-bottom-food-tags">
-              {meal.strIngredient1 && <span>{meal.strIngredient1}</span>}
-              {meal.strIngredient2 && <span>{meal.strIngredient2}</span>}
-              {meal.strIngredient3 && <span>{meal.strIngredient3}</span>}
-              {meal.strIngredient4 && <span>{meal.strIngredient4}</span>}
-              {meal.strIngredient5 && <span>{meal.strIngredient5}</span>}
-              {meal.strIngredient6 && <span>{meal.strIngredient6}</span>}
-              {meal.strIngredient7 && <span>{meal.strIngredient7}</span>}
+              {meal.strIngredient1 && (
+                <span>
+                  <Link to={`/ingredients/${meal.strIngredient1}`}>
+                    {meal.strIngredient1}
+                  </Link>
+                </span>
+              )}
+              {meal.strIngredient2 && (
+                <span>
+                  <Link to={`/ingredients/${meal.strIngredient2}`}>
+                    {meal.strIngredient2}
+                  </Link>
+                </span>
+              )}
+              {meal.strIngredient3 && (
+                <span>
+                  <Link to={`/ingredients/${meal.strIngredient3}`}>
+                    {meal.strIngredient3}
+                  </Link>
+                </span>
+              )}
+              {meal.strIngredient4 && (
+                <span>
+                  <Link to={`/ingredients/${meal.strIngredient4}`}>
+                    {meal.strIngredient4}
+                  </Link>
+                </span>
+              )}
+              {meal.strIngredient5 && (
+                <span>
+                  <Link to={`/ingredients/${meal.strIngredient5}`}>
+                    {meal.strIngredient5}
+                  </Link>
+                </span>
+              )}
+              {meal.strIngredient6 && (
+                <span>
+                  <Link to={`/ingredients/${meal.strIngredient6}`}>
+                    {meal.strIngredient6}
+                  </Link>
+                </span>
+              )}
+              {meal.strIngredient7 && (
+                <span>
+                  <Link to={`/ingredients/${meal.strIngredient7}`}>
+                    {meal.strIngredient7}
+                  </Link>
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -80,7 +119,7 @@ export default function Restaurant() {
       />
       <div className="restaurant__other">
         {mealListLoading ? (
-          <MealListPlaceHolder />
+          <Loader type="list" />
         ) : (
           mealLists.slice(0, 4).map((mealList) => {
             return <MealList key={mealList.idMeal} meal={mealList} history />;

@@ -3,7 +3,7 @@ import Topbar from "../../Components/Topbar/Topbar";
 import Category from "../../Components/Category/Category";
 import { useEffect, useState } from "react";
 import { getMealCategories } from "../../Api/Apicalls";
-import MealListPlaceHolder from "../../Components/MealListPlaceholder/MealListPlaceHolder";
+import Loader from "../../Components/Loader/Loader";
 export default function Categories() {
   const [loading, setLoading] = useState(true);
   const [mealCategories, setMealCategories] = useState([]);
@@ -33,7 +33,7 @@ export default function Categories() {
       <Topbar />
       <div className="categories">
         {loading ? (
-          <MealListPlaceHolder />
+          <Loader type="list" />
         ) : (
           mealCategories.map((category) => {
             return (

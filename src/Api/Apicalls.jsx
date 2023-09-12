@@ -156,3 +156,40 @@ export const getMealsByArea = async (setLoading, setMeals, area) => {
       setLoading(false);
     });
 };
+
+export const getMealsByIngredients = async (
+  setLoading,
+  setMeals,
+  ingredient
+) => {
+  setLoading(true);
+  await axiosInstance({
+    method: "get",
+    url: "/filter.php",
+    params: {
+      i: ingredient,
+    },
+  })
+    .then((res) => {
+      setMeals(res.data.meals);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+};
+
+export const getRandomMeal = async (setRandomMeal) => {
+  await axiosInstance({
+    method: "get",
+    url: "/random.php",
+  })
+    .then((res) => {
+      setRandomMeal(res.data.meals[0]);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};

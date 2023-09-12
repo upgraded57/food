@@ -11,7 +11,7 @@ import tempFilterImg1 from "../../assets/images/meal1.png";
 import tempFilterImg2 from "../../assets/images/meal2.png";
 import noResultImg from "../../assets/images/404img.png";
 import { searchMealByName } from "../../Api/Apicalls";
-import MealListPlaceHolder from "../../Components/MealListPlaceholder/MealListPlaceHolder";
+import Loader from "../../Components/Loader/Loader";
 
 export default function SearchPage() {
   const { search_query } = useParams();
@@ -21,8 +21,6 @@ export default function SearchPage() {
   useEffect(() => {
     searchMealByName(search_query, setSearchLoading, setSearchResults);
   }, [search_query]);
-
-  console.log(searchResults);
 
   const [filters, setFilters] = useState([]);
 
@@ -48,7 +46,6 @@ export default function SearchPage() {
     });
   };
 
-  console.log(searchResults);
   return (
     <div className="searchPage">
       <Topbar />
@@ -88,7 +85,7 @@ export default function SearchPage() {
 
       <div className="searchPage__results">
         {searchLoading ? (
-          <MealListPlaceHolder />
+          <Loader type="list" />
         ) : searchResults.length < 1 ? (
           <span className="no-result">
             <img src={noResultImg} alt="" />

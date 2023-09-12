@@ -22,10 +22,9 @@ import Navbar from "../../Components/Navbar/Navbar";
 import Topbar from "../../Components/Topbar/Topbar";
 import Search from "../../Components/Search/Search";
 import BottomSpace from "../../Components/BottomSpace/BottomSpace";
-import MealCardPlaceholder from "../../Components/MealCardPlaceholder/MealCardPlaceholder";
-import MealListPlaceHolder from "../../Components/MealListPlaceholder/MealListPlaceHolder";
 import useFetchMealLists from "../../Hooks/useFetchMealLists";
 import useFetchMeals from "../../Hooks/useFetchMeals";
+import Loader from "../../Components/Loader/Loader";
 
 export default function Home() {
   const { mealListLoading, mealLists } = useFetchMealLists();
@@ -125,7 +124,7 @@ export default function Home() {
 
         <div className="home__new-arrivals-cards">
           {loading ? (
-            <MealCardPlaceholder />
+            <Loader type="card" />
           ) : (
             meals.map((meal) => {
               return <MealCard key={meal.idMeal} meal={meal} />;
@@ -145,7 +144,7 @@ export default function Home() {
         </div>
         <div className="home__new-arrivals-list">
           {mealListLoading ? (
-            <MealListPlaceHolder />
+            <Loader type="list" />
           ) : (
             mealLists.map((mealList) => {
               return <MealList key={mealList.idMeal} meal={mealList} />;

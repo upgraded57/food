@@ -7,10 +7,9 @@ import SectionHead from "../../Components/SectionHead/SectionHead";
 import MealCard from "../../Components/MealCard/MealCard";
 import MealList from "../../Components/MealList/MealList";
 import BottomSpace from "../../Components/BottomSpace/BottomSpace";
-import MealCardPlaceholder from "../../Components/MealCardPlaceholder/MealCardPlaceholder";
-import MealListPlaceHolder from "../../Components/MealListPlaceholder/MealListPlaceHolder";
 import useFetchMealLists from "../../Hooks/useFetchMealLists";
 import useFetchMeals from "../../Hooks/useFetchMeals";
+import Loader from "../../Components/Loader/Loader";
 
 export default function Arrivables() {
   const { mealListLoading, mealLists } = useFetchMealLists();
@@ -29,7 +28,7 @@ export default function Arrivables() {
 
       <div className="arrivables__meal-cards">
         {loading ? (
-          <MealCardPlaceholder />
+          <Loader type="card" />
         ) : (
           meals.map((meal) => {
             return <MealCard key={meal.idMeal} meal={meal} />;
@@ -46,7 +45,7 @@ export default function Arrivables() {
 
       <div className="arrivables__restaurants">
         {mealListLoading ? (
-          <MealListPlaceHolder />
+          <Loader type="list" />
         ) : (
           mealLists.map((mealList) => {
             return <MealList key={mealList.idMeal} meal={mealList} />;

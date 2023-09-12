@@ -19,6 +19,10 @@ const CategoriesFilter = React.lazy(() =>
   import("./Pages/CategoriesFilter/CategoriesFilter")
 );
 const AreaFilter = React.lazy(() => import("./Pages/AreaFilter/AreaFilter"));
+const Ingredients = React.lazy(() => import("./Pages/Ingredients/Ingredients"));
+const IngredientsFilter = React.lazy(() =>
+  import("./Pages/IngredientsFilter/IngredientsFilter")
+);
 const NotFound = React.lazy(() => import("./Pages/NotFound/NotFound"));
 const UserProfile = React.lazy(() => import("./Pages/UserProfile/UserProfile"));
 
@@ -29,7 +33,7 @@ function App() {
         <Route
           index
           element={
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Loader type="preloader" />}>
               <Home />
             </Suspense>
           }
@@ -37,7 +41,7 @@ function App() {
         <Route
           path="/arrivables"
           element={
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Loader type="preloader" />}>
               <Arrivables />
             </Suspense>
           }
@@ -45,7 +49,7 @@ function App() {
         <Route
           path="/history"
           element={
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Loader type="preloader" />}>
               <History />
             </Suspense>
           }
@@ -53,7 +57,7 @@ function App() {
         <Route
           path="/meal/:meal_id"
           element={
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Loader type="preloader" />}>
               <Restaurant />
             </Suspense>
           }
@@ -61,7 +65,7 @@ function App() {
         <Route
           path="/search/:search_query"
           element={
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Loader type="preloader" />}>
               <SearchPage />
             </Suspense>
           }
@@ -69,7 +73,7 @@ function App() {
         <Route
           path="/profile"
           element={
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Loader type="preloader" />}>
               <Profile />
             </Suspense>
           }
@@ -77,7 +81,7 @@ function App() {
         <Route
           path="/profile/user"
           element={
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Loader type="preloader" />}>
               <UserProfile />
             </Suspense>
           }
@@ -85,7 +89,7 @@ function App() {
         <Route
           path="/cart"
           element={
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Loader type="preloader" />}>
               <Cart />
             </Suspense>
           }
@@ -93,7 +97,7 @@ function App() {
         <Route
           path="/profile/edit"
           element={
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Loader type="preloader" />}>
               <EditAccount />
             </Suspense>
           }
@@ -101,7 +105,7 @@ function App() {
         <Route
           path="/categories"
           element={
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Loader type="preloader" />}>
               <Categories />
             </Suspense>
           }
@@ -109,7 +113,7 @@ function App() {
         <Route
           path="/categories/:category"
           element={
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Loader type="preloader" />}>
               <CategoriesFilter />
             </Suspense>
           }
@@ -117,7 +121,7 @@ function App() {
         <Route
           path="/area"
           element={
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Loader type="preloader" />}>
               <Area />
             </Suspense>
           }
@@ -125,15 +129,31 @@ function App() {
         <Route
           path="/area/:area"
           element={
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Loader type="preloader" />}>
               <AreaFilter />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/ingredients"
+          element={
+            <Suspense fallback={<Loader type="preloader" />}>
+              <Ingredients />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/ingredients/:ingredient"
+          element={
+            <Suspense fallback={<Loader type="preloader" />}>
+              <IngredientsFilter />
             </Suspense>
           }
         />
         <Route
           path="/onboarding"
           element={
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Loader type="preloader" />}>
               <Onboarding />
             </Suspense>
           }
@@ -141,7 +161,7 @@ function App() {
         <Route
           path="/auth"
           element={
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Loader type="preloader" />}>
               <Auth />
             </Suspense>
           }
@@ -149,7 +169,7 @@ function App() {
         <Route
           path="*"
           element={
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<Loader type="preloader" />}>
               <NotFound />
             </Suspense>
           }

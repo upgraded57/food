@@ -5,15 +5,16 @@ import userImg from "../../assets/images/user.jpg";
 import { CgMenuLeft } from "react-icons/cg";
 import { VscLayoutMenubar } from "react-icons/vsc";
 import { BsSortUp } from "react-icons/bs";
-import { MdLocationPin, MdOutlineDeliveryDining } from "react-icons/md";
+import { MdLocationPin } from "react-icons/md";
 import { TbMapPinSearch } from "react-icons/tb";
 import { GoHome } from "react-icons/go";
 import { AiOutlineClose, AiOutlineFire } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
+import { PiCarrot } from "react-icons/pi";
 import { Link, useNavigate } from "react-router-dom";
 import TopSpace from "../TopSpace/TopSpace";
 import axios from "axios";
-import { comingSoon } from "../../Api/Apicalls";
+import { comingSoon, getRandomMeal } from "../../Api/Apicalls";
 
 export default function Topbar() {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ export default function Topbar() {
             .get(`http://ip-api.com/json/${res.data.ip}?fields=32789`)
             .then((res) => setUserLocation(res.data))
             .catch((err) => {
-              console.log(err);
+              console.log(err.message);
               setLocationError(true);
             })
             .finally(() => {
@@ -47,6 +48,13 @@ export default function Topbar() {
     };
     getUserIp();
   }, []);
+
+  const [randomMeal, setRandomMeal] = useState({});
+
+  useEffect(() => {
+    getRandomMeal(setRandomMeal);
+  }, []);
+
   return (
     <>
       <div className="topbar">
@@ -91,15 +99,6 @@ export default function Topbar() {
             </li>
             <li
               className="sidebar__bar-link"
-              onClick={() => (setSidebarActive(false), comingSoon())}
-            >
-              <div className="sidebar__bar-link-icon">
-                <VscLayoutMenubar />
-              </div>
-              <p className="text-body">Food Menu</p>
-            </li>
-            <li
-              className="sidebar__bar-link"
               onClick={() => (setSidebarActive(false), navigate("/categories"))}
             >
               <div className="sidebar__bar-link-icon">
@@ -109,21 +108,25 @@ export default function Topbar() {
             </li>
             <li
               className="sidebar__bar-link"
-              onClick={() => (setSidebarActive(false), comingSoon())}
+              onClick={() => (
+                setSidebarActive(false), navigate("/meal/" + randomMeal.idMeal)
+              )}
             >
               <div className="sidebar__bar-link-icon">
                 <AiOutlineFire />
               </div>
-              <p className="text-body">Popular Foods</p>
+              <p className="text-body">Random Meal</p>
             </li>
             <li
               className="sidebar__bar-link"
-              onClick={() => (setSidebarActive(false), comingSoon())}
+              onClick={() => (
+                setSidebarActive(false), navigate("/ingredients")
+              )}
             >
               <div className="sidebar__bar-link-icon">
-                <MdOutlineDeliveryDining />
+                <PiCarrot />
               </div>
-              <p className="text-body">Foods Near me</p>
+              <p className="text-body">Browse by Ingredients</p>
             </li>
             <li
               className="sidebar__bar-link"

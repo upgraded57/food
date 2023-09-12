@@ -25,3 +25,239 @@
     box-shadow: 48px 0 #ddd inset;
   }
 }
+
+.mealcardplaceholder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mealcardplaceholder__container {
+  width: 148px;
+  height: 170px;
+  background: white;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+}
+
+.mealcardplaceholder__container-img {
+  height: 104px;
+  width: 100%;
+  background: #dfdfdf;
+  margin-inline: auto;
+  border-radius: calc(var(--radius-sm) / 2);
+  animation: animateBg 3s linear alternate infinite;
+}
+
+.mealcardplaceholder__container-content {
+  width: 100%;
+  background: #dfdfdf;
+  margin-inline: auto;
+  height: 20px;
+  border-radius: calc(var(--radius-sm) / 2);
+  animation: animateBg 3s linear alternate infinite;
+}
+
+.mealcardplaceholder__container-content.short {
+  transform: scaleX(0.8);
+  height: 10px;
+  transform-origin: left;
+}
+
+@keyframes animateBg {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.mealcarouselplaceholder {
+  width: 80%;
+  height: auto;
+  background: white;
+  margin-inline: auto;
+  border-radius: var(--radius-bg);
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  gap: 20px;
+}
+
+.mealcarouselplaceholder__left {
+  flex-basis: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mealcarouselplaceholder__right {
+  flex-basis: 40%;
+}
+
+.mealcarouselplaceholder__left-name,
+.mealcarouselplaceholder__left-text,
+.mealcarouselplaceholder__left-btn,
+.mealcarouselplaceholder__right-img {
+  background: var(--body-clr);
+  border-radius: calc(var(--radius-sm) / 2);
+  animation: animateBg 3s linear alternate infinite;
+}
+
+.mealcarouselplaceholder__left-name {
+  width: 90%;
+  height: 20px;
+}
+.mealcarouselplaceholder__left-text {
+  width: 100%;
+  height: 10px;
+}
+
+.mealcarouselplaceholder__left-text:nth-child(4) {
+  width: 70% !important;
+}
+
+.mealcarouselplaceholder__left-btn {
+  width: 50%;
+  height: 30px;
+}
+
+.mealcarouselplaceholder__right-img {
+  width: 100%;
+  height: 100px;
+}
+
+.meallistplaceholder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 74px;
+  background: white;
+  border-radius: var(--radius-sm);
+  margin-bottom: 20px;
+}
+
+.meallistplaceholder__img {
+  margin-left: 7px;
+  height: 80%;
+  aspect-ratio: 1/1;
+  background: var(--body-clr);
+  animation: animateBg 3s linear alternate infinite;
+  border-radius: calc(var(--radius-sm) / 2);
+}
+
+.meallistplaceholder__content {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.meallistplaceholder__content-header,
+.meallistplaceholder__content-subtitle,
+.meallistplaceholder__content-button {
+  background: var(--body-clr);
+  animation: animateBg 3s linear alternate infinite;
+  border-radius: calc(var(--radius-sm) / 2);
+}
+
+.meallistplaceholder__content-header {
+  height: 20px;
+  width: 80%;
+}
+
+.meallistplaceholder__content-bottom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.meallistplaceholder__content-bottom span {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 60%;
+}
+.meallistplaceholder__content-subtitle {
+  height: 10px;
+  width: 100%;
+}
+
+.meallistplaceholder__content-button {
+  height: 30px;
+  width: 100px;
+}
+
+.mealplaceholder {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border-radius: var(--radius-bg);
+  background: white;
+  margin-block: 2vh;
+  z-index: 2 !important;
+}
+
+.mealplaceholder__top-name,
+.mealplaceholder__top-location,
+.mealplaceholder__image,
+.mealplaceholder__bottom span {
+  background: var(--body-clr-dark);
+  border-radius: calc(var(--radius-sm) / 2);
+  animation: animateBg 3s linear alternate infinite;
+}
+
+.mealplaceholder__image {
+  border-radius: var(--radius-sm) !important;
+}
+
+.mealplaceholder__top {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mealplaceholder__top-name {
+  height: 20px;
+  width: 90%;
+}
+
+.mealplaceholder__top-location {
+  height: 10px;
+  width: 80%;
+}
+
+.mealplaceholder__image {
+  width: 100%;
+  aspect-ratio: 2/1.4;
+}
+
+.mealplaceholder__bottom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mealplaceholder__bottom span {
+  height: 20px;
+  aspect-ratio: 4/1;
+}
+
+.mealplaceholder__bottom span:nth-child(2) {
+  aspect-ratio: 3/1;
+}

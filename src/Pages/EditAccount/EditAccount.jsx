@@ -27,7 +27,6 @@ export default function EditAccount() {
                 <label htmlFor="fullname">
                   <p className="text-body text-bold">Full Name</p>
                   <input
-                    required
                     type="text"
                     id="fullname"
                     placeholder="Jane MacDowells"
@@ -38,7 +37,6 @@ export default function EditAccount() {
                 <label htmlFor="email">
                   <p className="text-body text-bold">Email address</p>
                   <input
-                    required
                     type="email"
                     id="email"
                     placeholder="Eg namaemail@emailkamu.com"
@@ -49,10 +47,19 @@ export default function EditAccount() {
                 <label htmlFor="phone">
                   <p className="text-body text-bold">Phone Number</p>
                   <input
-                    required
                     type="email"
                     id="email"
                     placeholder="(+234 (0) 814 473 9905)"
+                  />
+                </label>
+              </span>
+              <span>
+                <label htmlFor="address">
+                  <p className="text-body text-bold">Delivery Address</p>
+                  <input
+                    type="text"
+                    id="address"
+                    placeholder="Somewhere Street, Some City, Some State"
                   />
                 </label>
               </span>

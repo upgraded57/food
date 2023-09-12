@@ -34,7 +34,6 @@ export default function Area() {
     fetchAreas();
   }, []);
 
-  console.log(areas);
   return (
     <>
       <Topbar />
