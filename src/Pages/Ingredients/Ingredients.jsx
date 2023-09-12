@@ -47,7 +47,7 @@ export default function Ingredients() {
   const [pagination, setPagination] = useState(9);
 
   const showMore = () => {
-    if (pagination >= ingredients.length) {
+    if (pagination >= filteredIngredients.length) {
       toast("That's all for now!");
     } else {
       setPagination((prev) => prev + 9);
