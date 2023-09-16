@@ -36,13 +36,17 @@
   margin-block: 6px;
 }
 
-.meal-quantity-toggle .qty-toggle-icon {
-  font-size: 20px;
+.meal-quantity-toggle span {
+  padding: 5px;
+  font-size: 12px;
+  background: var(--body-clr-dark);
   color: var(--neutral-clr-dark);
+  border-radius: var(--radius-sm);
 }
 
-.meal-price {
-  color: var(--neutral-clr-dark);
+.meal-quantity-toggle span.active {
+  background: var(--pry-clr);
+  color: white;
 }
 
 .cart__item-delete-icon {
@@ -63,5 +67,42 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   left: 0;
+}
+
+.cart__bottom .home-btn {
+  height: 48px;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--body-clr-dark);
+  border-radius: var(--radius-sm);
+  font-size: 24px;
+  color: var(--neutral-clr-dark);
+}
+
+.empty-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  top: 20%;
+}
+
+.empty-cart__img {
+  width: 60%;
+  overflow: hidden;
+}
+
+.empty-cart__img img {
+  width: 100%;
+}
+
+.empty-cart__text {
+  text-align: center;
+  margin-bottom: 10px;
 }

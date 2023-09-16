@@ -4,6 +4,7 @@ import Navbar from "../../Components/Navbar/Navbar";
 import MealList from "../../Components/MealList/MealList";
 import useFetchMealLists from "../../Hooks/useFetchMealLists";
 import Loader from "../../Components/Loader/Loader";
+import TopSpace from "./../../Components/TopSpace/TopSpace";
 
 export default function History() {
   const { mealListLoading, mealLists } = useFetchMealLists();
@@ -19,6 +20,7 @@ export default function History() {
           })
         )}
       </div>
+      <TopSpace />
       <Navbar />
     </div>
   );

@@ -3,19 +3,23 @@ import "./restaurant.css";
 
 import { MdLocationPin } from "react-icons/md";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import { addItemToCart } from "../../features/actions/CartActions";
 
 import BottomSpace from "../../Components/BottomSpace/BottomSpace";
 import SectionHead from "../../Components/SectionHead/SectionHead";
 import MealList from "../../Components/MealList/MealList";
 
-import { comingSoon, fetchMealById } from "../../Api/Apicalls";
+import { fetchMealById } from "../../Api/Apicalls";
 import ImageModal from "../../Components/ImageModal/ImageModal";
 import GreenTop from "../../Components/GreenTop/GreenTop";
 import useFetchMealLists from "../../Hooks/useFetchMealLists";
 import Loader from "../../Components/Loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 export default function Restaurant() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { meal_id } = useParams();
   const [loading, setLoading] = useState(true);
@@ -29,7 +33,14 @@ export default function Restaurant() {
   const { mealListLoading, mealLists } = useFetchMealLists();
 
   // show image modal
+
   const [imageModal, setImageModal] = useState(false);
+
+  const error = useSelector((state) => state.error);
+  const orderMeal = (meal) => {
+    dispatch(addItemToCart(meal));
+    toast.success("Meal added to cart");
+  };
 
   return (
     <div className="restaurant">
@@ -129,7 +140,7 @@ export default function Restaurant() {
 
       <BottomSpace />
       <div className="restaurant__book">
-        <button className="btn-pry-bg" onClick={comingSoon}>
+        <button className="btn-pry-bg" onClick={() => orderMeal(meal)}>
           Order This Meal
         </button>
       </div>
