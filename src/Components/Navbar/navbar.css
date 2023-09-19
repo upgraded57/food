@@ -21,8 +21,25 @@
 .home__nav ul li {
   font-size: 24px;
   color: var(--neutral-clr-dark);
+  position: relative;
 }
 
 .home__nav ul li.active {
   color: var(--pry-clr);
+}
+
+.cart-item-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  width: 15px;
+  height: 15px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 700;
+  color: white;
 }
