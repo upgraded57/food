@@ -14,6 +14,12 @@ const Cart = React.lazy(() => import("./Pages/Cart/Cart"));
 const SearchPage = React.lazy(() => import("./Pages/SearchPage/SearchPage"));
 const Area = React.lazy(() => import("./Pages/Area/Area"));
 const EditAccount = React.lazy(() => import("./Pages/EditAccount/EditAccount"));
+const ForgotPassword = React.lazy(() =>
+  import("./Pages/ForgotPassword/ForgotPassword")
+);
+const ResetPassword = React.lazy(() =>
+  import("./Pages/ResetPassword/ResetPassword")
+);
 const Categories = React.lazy(() => import("./Pages/Categories/Categories"));
 const CategoriesFilter = React.lazy(() =>
   import("./Pages/CategoriesFilter/CategoriesFilter")
@@ -163,6 +169,22 @@ function App() {
           element={
             <Suspense fallback={<Loader type="preloader" />}>
               <Auth />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/password-forgot"
+          element={
+            <Suspense fallback={<Loader type="preloader" />}>
+              <ForgotPassword />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/password-reset"
+          element={
+            <Suspense fallback={<Loader type="preloader" />}>
+              <ResetPassword />
             </Suspense>
           }
         />

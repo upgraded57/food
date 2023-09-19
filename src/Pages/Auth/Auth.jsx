@@ -4,6 +4,7 @@ import "./auth.css";
 import welcomeImg from "../../assets/images/auth.svg";
 
 import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 export default function Auth() {
   const [authNavs, setAuthNavs] = useState(null);
@@ -45,9 +46,31 @@ export default function Auth() {
       "scaleY(0)";
   };
 
-  const openModal = () => {
+  const openModalToCreate = () => {
     document.querySelector(".auth__modal-overlay").style.transform =
       "scaleY(1)";
+    if (!authNavs[0].classList.contains("active")) {
+      authNavs[0].classList.add("active");
+    }
+    if (authNavs[1].classList.contains("active")) {
+      authNavs[1].classList.remove("active");
+    }
+    if (authScreen) {
+      authScreen.style.left = "0";
+    }
+  };
+  const openModalToLogin = () => {
+    document.querySelector(".auth__modal-overlay").style.transform =
+      "scaleY(1)";
+    if (!authNavs[1].classList.contains("active")) {
+      authNavs[1].classList.add("active");
+    }
+    if (authNavs[0].classList.contains("active")) {
+      authNavs[0].classList.remove("active");
+    }
+    if (authScreen) {
+      authScreen.style.left = "-100%";
+    }
   };
   return (
     <div className="auth">
@@ -64,10 +87,10 @@ export default function Auth() {
           </div>
         </div>
         <div className="auth__welcome-btns">
-          <button className="btn-pry-bg" onClick={openModal}>
+          <button className="btn-pry-bg" onClick={openModalToCreate}>
             Create Account
           </button>
-          <button className="btn-pry-alt-bg" onClick={openModal}>
+          <button className="btn-pry-alt-bg" onClick={openModalToLogin}>
             Login
           </button>
           <p className="text-body text-center">
@@ -78,6 +101,7 @@ export default function Auth() {
       </div>
 
       <div className="auth__modal-overlay">
+        <div className="auth__modal-overlay-close" onClick={closeModal}></div>
         <div className="auth__modal">
           <div className="auth__modal-close-btn" onClick={closeModal}></div>
           <div className="auth__modal-nav">
@@ -86,7 +110,7 @@ export default function Auth() {
           </div>
           <div className="auth__modal-form">
             <div className="auth__modal-form-screen">
-              <form>
+              <form onSubmit={(e) => e.preventDefault()}>
                 <span>
                   <label htmlFor="fullname">
                     <p className="text-body text-bold">Full Name</p>
@@ -135,7 +159,7 @@ export default function Auth() {
               </form>
             </div>
             <div className="auth__modal-form-screen">
-              <form>
+              <form onSubmit={(e) => e.preventDefault()}>
                 <span>
                   <label htmlFor="email">
                     <p className="text-body text-bold">Email address</p>
@@ -158,7 +182,9 @@ export default function Auth() {
                     />
                   </label>
                   <div className="forgot-password-btn">
-                    <p className="text-body">Forgot Password?</p>
+                    <Link to="/password-forgot" className="text-body">
+                      Forgot Password?
+                    </Link>
                   </div>
                 </span>
                 <div className="auth__modal-form-screen-btns">

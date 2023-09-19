@@ -40,7 +40,8 @@
 }
 
 .sidebar {
-  width: 100vw;
+  width: min(500px, 100vw);
+  margin-inline: auto;
   height: calc(100vh - 50px);
   position: fixed;
   top: 50px;

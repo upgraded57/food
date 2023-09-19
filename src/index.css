@@ -107,6 +107,12 @@ button {
   cursor: pointer;
 }
 
+.btn-pry-bg.disabled {
+  pointer-events: none;
+  background: var(--body-clr-dark);
+  color: var(--neutral-clr-dark);
+}
+
 .btn-pry-sm {
   width: 88px;
   height: 28px;
