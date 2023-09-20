@@ -20,7 +20,9 @@ export const cartReducer = (state = initialState, action) => {
     case DELETEITEMFROMCART:
       return {
         ...state,
-        cart: state.cart.pop(action.payload),
+        cart: state.cart.filter((meal) => {
+          return meal.idMeal !== action.payload.idMeal;
+        }),
       };
     default:
       return state;

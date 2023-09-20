@@ -140,7 +140,10 @@ export default function Restaurant() {
 
       <BottomSpace />
       <div className="restaurant__book">
-        <button className="btn-pry-bg" onClick={() => orderMeal(meal)}>
+        <button
+          className={loading ? "btn-pry-bg disabled" : "btn-pry-bg"}
+          onClick={() => orderMeal(meal)}
+        >
           Order This Meal
         </button>
       </div>
