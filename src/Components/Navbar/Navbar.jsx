@@ -11,7 +11,7 @@ export default function Navbar() {
   const location = useLocation().pathname;
   const navigate = useNavigate();
 
-  const cartItems = useSelector((state) => state.cart);
+  const cartItems = useSelector((state) => state.cart.cart);
   return (
     <div className="home__nav">
       <ul>

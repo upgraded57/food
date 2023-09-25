@@ -1,5 +1,6 @@
 import { toast } from "react-hot-toast";
 import { axiosInstance } from "./AxiosInstance";
+import axios from "axios";
 export const fetchMeal = async (setMealsLoading, setMeals) => {
   setMealsLoading(true);
   for (let i = 0; i <= 3; i++) {
@@ -193,3 +194,9 @@ export const getRandomMeal = async (setRandomMeal) => {
       console.log(err.message);
     });
 };
+
+// const getUserData = async() => {
+//   await axios.get("https://randomuser.me/api/").then((res) => {
+//     useDispatch
+//   })
+// }

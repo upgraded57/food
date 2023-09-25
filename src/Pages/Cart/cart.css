@@ -38,16 +38,28 @@
 }
 
 .meal-quantity-toggle span {
+  display: flex;
+  align-items: center;
+}
+
+.meal-quantity-toggle span label {
   padding: 5px;
   font-size: 12px;
   background: var(--body-clr-dark);
   color: var(--neutral-clr-dark);
   border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  transition: all 0.2s linear;
 }
 
-.meal-quantity-toggle span.active {
-  background: var(--pry-clr);
-  color: white;
+.meal-quantity-toggle span input[type="radio"] {
+  display: none;
+}
+
+.meal-quantity-toggle span input[type="radio"]:checked + label {
+  border: 2px solid var(--pry-clr);
+  color: var(--pry-clr);
+  background: transparent;
 }
 
 .cart__item-delete-icon {

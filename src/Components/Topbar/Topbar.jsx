@@ -3,7 +3,6 @@ import "./topbar.css";
 
 import userImg from "../../assets/images/user.jpg";
 import { CgMenuLeft } from "react-icons/cg";
-import { VscLayoutMenubar } from "react-icons/vsc";
 import { BsSortUp } from "react-icons/bs";
 import { MdLocationPin } from "react-icons/md";
 import { TbMapPinSearch } from "react-icons/tb";
@@ -14,7 +13,7 @@ import { PiCarrot } from "react-icons/pi";
 import { Link, useNavigate } from "react-router-dom";
 import TopSpace from "../TopSpace/TopSpace";
 import axios from "axios";
-import { comingSoon, getRandomMeal } from "../../Api/Apicalls";
+import { getRandomMeal } from "../../Api/Apicalls";
 
 export default function Topbar() {
   const navigate = useNavigate();

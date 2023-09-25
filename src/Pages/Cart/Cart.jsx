@@ -14,7 +14,7 @@ import CartItem from "./CartItem";
 
 export default function Cart() {
   const navigate = useNavigate();
-  const cartItems = useSelector((state) => state.cart);
+  const cartItems = useSelector((state) => state.cart.cart);
 
   return (
     <>

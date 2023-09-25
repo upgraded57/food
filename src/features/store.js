@@ -1,10 +1,9 @@
 import { composeWithDevTools } from "redux-devtools-extension";
-import { cartReducer } from "./Reducer";
 import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
-import { addItemToCart } from "./actions/CartActions";
+import { rootReducer } from "./Reducers/RootReducer";
 
 export const store = createStore(
-  cartReducer,
+  rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
