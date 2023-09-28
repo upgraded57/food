@@ -11,10 +11,13 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "./../../Components/Navbar/Navbar";
 import { GoHome } from "react-icons/go";
 import CartItem from "./CartItem";
+import { useState } from "react";
 
 export default function Cart() {
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.cart);
+
+  const [totalPrice, setTotalPrice] = useState(0);
 
   return (
     <>
@@ -24,9 +27,15 @@ export default function Cart() {
           My Cart
         </h2>
         {cartItems.length > 0 ? (
-          cartItems.map((meal) => {
-            return <CartItem meal={meal} key={meal.idMeal} />;
-          })
+          <>
+            {cartItems.map((meal) => {
+              return <CartItem meal={meal} key={meal.idMeal} />;
+            })}
+            <div className="cart__total">
+              <p className="text-body">Total</p>
+              <span className="cart__total-price">$2000</span>
+            </div>
+          </>
         ) : (
           <div className="empty-cart">
             <div className="empty-cart__img">
@@ -45,6 +54,7 @@ export default function Cart() {
             </button>
           </div>
         )}
+
         <BottomSpace />
         {cartItems.length > 0 ? (
           <div className="cart__bottom">

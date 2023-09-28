@@ -9,6 +9,10 @@ export default function CartItem({ meal }) {
     setDeleteMealModal(true);
   };
 
+  const [mealSize, setMealSize] = useState(2);
+
+  const mealPrice = (Math.random() * 4000).toFixed(2);
+
   return (
     <>
       <div className="cart__container active">
@@ -24,6 +28,7 @@ export default function CartItem({ meal }) {
                   type="radio"
                   id={`${meal.idMeal}-sm`}
                   name={meal.idMeal}
+                  onClick={() => setMealSize(1)}
                 />
                 <label htmlFor={`${meal.idMeal}-sm`}>Small</label>
               </span>
@@ -34,6 +39,7 @@ export default function CartItem({ meal }) {
                   id={`${meal.idMeal}-md`}
                   name={meal.idMeal}
                   defaultChecked
+                  onClick={() => setMealSize(2)}
                 />
                 <label htmlFor={`${meal.idMeal}-md`}>Standard</label>
               </span>
@@ -43,11 +49,19 @@ export default function CartItem({ meal }) {
                   type="radio"
                   id={`${meal.idMeal}-lg`}
                   name={meal.idMeal}
+                  onClick={() => setMealSize(3)}
                 />
                 <label htmlFor={`${meal.idMeal}-lg`}>Large</label>
               </span>
             </div>
-            <div className="meal-price">$3,042.36</div>
+            <div className="meal-price">
+              $
+              {mealSize === 1
+                ? (mealPrice * 0.7).toFixed(2)
+                : mealSize === 2
+                ? mealPrice
+                : (mealPrice * 1.4).toFixed(2)}
+            </div>
           </div>
           <div className="cart__item-delete-icon" onClick={deleteMeal}>
             <GoTrash className="del-icon" />
