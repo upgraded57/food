@@ -33,7 +33,9 @@ export default function Cart() {
             })}
             <div className="cart__total">
               <p className="text-body">Total</p>
-              <span className="cart__total-price">$2000</span>
+              <span className="cart__total-price">
+                ${(Math.random() * 50000).toFixed(2)}
+              </span>
             </div>
           </>
         ) : (
