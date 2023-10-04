@@ -4,8 +4,7 @@ import Search from "../../Components/Search/Search";
 import SectionHead from "../../Components/SectionHead/SectionHead";
 import "../Home/home.css";
 import "./categoriesfilter.css";
-import { useEffect, useState } from "react";
-import { getMealsByCategory } from "../../Api/Apicalls";
+import { useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 // Import Swiper React components
@@ -20,15 +19,24 @@ import "swiper/css/pagination";
 import MealList from "../../Components/MealList/MealList";
 import toast from "react-hot-toast";
 import Loader from "../../Components/Loader/Loader";
+import { useQuery } from "react-query";
+import { axiosInstance } from "../../Api/AxiosInstance";
 
 export default function CategoriesFilter() {
   const { category } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [meals, setMeals] = useState([]);
 
-  useEffect(() => {
-    getMealsByCategory(setLoading, setMeals, category);
-  }, []);
+  const getMealsByCategory = () => {
+    return axiosInstance({
+      method: "get",
+      url: "/filter.php",
+      params: {
+        c: category,
+      },
+    });
+  };
+
+  const { isLoading, data } = useQuery("mealCategory", getMealsByCategory);
+  const meals = data ? data.data.meals : [];
 
   const bgArray = [
     "(90deg, #3ad59f 0%, #f8ff00 100%)",
@@ -67,7 +75,7 @@ export default function CategoriesFilter() {
       />
 
       <div className="categoriesfilter">
-        {loading ? (
+        {isLoading ? (
           <Loader type="carousel" />
         ) : (
           <Swiper
@@ -123,7 +131,7 @@ export default function CategoriesFilter() {
 
       <div className="categoriesfilter">
         <div className="categoriesfilter__list">
-          {loading ? (
+          {isLoading ? (
             <Loader type="list" />
           ) : (
             meals.slice(0, pageNum).map((meal) => {

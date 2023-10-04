@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import "./home.css";
 
 // Import Swiper React components
@@ -27,8 +26,8 @@ import useFetchMeals from "../../Hooks/useFetchMeals";
 import Loader from "../../Components/Loader/Loader";
 
 export default function Home() {
-  const { mealListLoading, mealLists } = useFetchMealLists();
-  const { loading, meals } = useFetchMeals();
+  const { mealListLoading, mealList } = useFetchMealLists();
+  const { mealLoading, meals } = useFetchMeals();
 
   return (
     <div className="home">
@@ -123,7 +122,7 @@ export default function Home() {
         </div>
 
         <div className="home__new-arrivals-cards">
-          {loading ? (
+          {mealLoading ? (
             <Loader type="card" />
           ) : (
             meals.map((meal) => {
@@ -146,8 +145,8 @@ export default function Home() {
           {mealListLoading ? (
             <Loader type="list" />
           ) : (
-            mealLists.map((mealList) => {
-              return <MealList key={mealList.idMeal} meal={mealList} />;
+            mealList.map((meal) => {
+              return <MealList key={meal.idMeal} meal={meal} />;
             })
           )}
         </div>

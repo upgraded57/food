@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { QueryClientProvider, QueryClient } from "react-query";
 import Loader from "./Components/Loader/Loader";
 
 // pages
@@ -32,172 +33,176 @@ const IngredientsFilter = React.lazy(() =>
 const NotFound = React.lazy(() => import("./Pages/NotFound/NotFound"));
 const UserProfile = React.lazy(() => import("./Pages/UserProfile/UserProfile"));
 
+const queryClient = new QueryClient();
+
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          index
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <Home />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/arrivables"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <Arrivables />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/history"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <History />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/meal/:meal_id"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <Restaurant />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/search/:search_query"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <SearchPage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <Profile />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/profile/user"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <UserProfile />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/cart"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <Cart />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/profile/edit"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <EditAccount />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/categories"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <Categories />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/categories/:category"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <CategoriesFilter />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/area"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <Area />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/area/:area"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <AreaFilter />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/ingredients"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <Ingredients />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/ingredients/:ingredient"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <IngredientsFilter />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/onboarding"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <Onboarding />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/auth"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <Auth />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/password-forgot"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <ForgotPassword />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/password-reset"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <ResetPassword />
-            </Suspense>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <Suspense fallback={<Loader type="preloader" />}>
-              <NotFound />
-            </Suspense>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            index
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <Home />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/arrivables"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <Arrivables />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/history"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <History />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/meal/:meal_id"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <Restaurant />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/search/:search_query"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <SearchPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <Profile />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/profile/user"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <UserProfile />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <Cart />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/profile/edit"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <EditAccount />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/categories"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <Categories />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/categories/:category"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <CategoriesFilter />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/area"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <Area />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/area/:area"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <AreaFilter />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/ingredients"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <Ingredients />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/ingredients/:ingredient"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <IngredientsFilter />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/onboarding"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <Onboarding />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/auth"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <Auth />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/password-forgot"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <ForgotPassword />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/password-reset"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <ResetPassword />
+              </Suspense>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<Loader type="preloader" />}>
+                <NotFound />
+              </Suspense>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 

@@ -1,42 +1,46 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import "./restaurant.css";
 
 import { MdLocationPin } from "react-icons/md";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { addItemToCart } from "../../features/actions/CartActions";
 
 import BottomSpace from "../../Components/BottomSpace/BottomSpace";
 import SectionHead from "../../Components/SectionHead/SectionHead";
 import MealList from "../../Components/MealList/MealList";
 
-import { fetchMealById } from "../../Api/Apicalls";
 import ImageModal from "../../Components/ImageModal/ImageModal";
 import GreenTop from "../../Components/GreenTop/GreenTop";
 import useFetchMealLists from "../../Hooks/useFetchMealLists";
 import Loader from "../../Components/Loader/Loader";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
+import { axiosInstance } from "../../Api/AxiosInstance";
+import { useQuery } from "react-query";
 
 export default function Restaurant() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { meal_id } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [meal, setMeal] = useState({});
 
-  useEffect(() => {
-    fetchMealById(meal_id, setLoading, setMeal);
-  }, [meal_id]);
+  const fetchMealById = () => {
+    return axiosInstance({
+      method: "get",
+      url: "/lookup.php",
+      params: {
+        i: meal_id,
+      },
+    });
+  };
 
-  //meals loading fetch
-  const { mealListLoading, mealLists } = useFetchMealLists();
+  const { isLoading, data } = useQuery(["fetchMeal", meal_id], fetchMealById);
+  const meal = data ? data.data.meals[0] : {};
+
+  const { mealListLoading, mealList } = useFetchMealLists();
 
   // show image modal
-
   const [imageModal, setImageModal] = useState(false);
 
-  const error = useSelector((state) => state.error);
   const orderMeal = (meal) => {
     dispatch(addItemToCart(meal));
     toast.success("Meal added to cart");
@@ -45,7 +49,7 @@ export default function Restaurant() {
   return (
     <div className="restaurant">
       <GreenTop header="Meal Detail" />
-      {loading ? (
+      {isLoading ? (
         <Loader type="meal" />
       ) : (
         <div className="restaurant__detail">
@@ -132,8 +136,8 @@ export default function Restaurant() {
         {mealListLoading ? (
           <Loader type="list" />
         ) : (
-          mealLists.slice(0, 4).map((mealList) => {
-            return <MealList key={mealList.idMeal} meal={mealList} history />;
+          mealList.slice(0, 4).map((meal) => {
+            return <MealList key={meal.idMeal} meal={meal} history />;
           })
         )}
       </div>
@@ -141,7 +145,7 @@ export default function Restaurant() {
       <BottomSpace />
       <div className="restaurant__book">
         <button
-          className={loading ? "btn-pry-bg disabled" : "btn-pry-bg"}
+          className={isLoading ? "btn-pry-bg disabled" : "btn-pry-bg"}
           onClick={() => orderMeal(meal)}
         >
           Order This Meal

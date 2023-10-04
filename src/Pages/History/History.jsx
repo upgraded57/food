@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import "./history.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import MealList from "../../Components/MealList/MealList";
@@ -7,7 +6,7 @@ import Loader from "../../Components/Loader/Loader";
 import TopSpace from "./../../Components/TopSpace/TopSpace";
 
 export default function History() {
-  const { mealListLoading, mealLists } = useFetchMealLists();
+  const { mealListLoading, mealList } = useFetchMealLists();
   return (
     <div className="history">
       <div className="history__top">Booking History</div>
@@ -15,8 +14,8 @@ export default function History() {
         {mealListLoading ? (
           <Loader type="list" />
         ) : (
-          mealLists.map((mealList) => {
-            return <MealList key={mealList.idMeal} meal={mealList} history />;
+          mealList.map((meal) => {
+            return <MealList key={meal.idMeal} meal={meal} history />;
           })
         )}
       </div>

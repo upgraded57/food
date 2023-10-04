@@ -1,13 +1,21 @@
-import { useEffect, useState } from "react";
-import { fetchMealList } from "../Api/Apicalls";
+import { useQuery } from "react-query";
+import { axiosInstance } from "../Api/AxiosInstance";
 
 export default function useFetchMealLists() {
-  //meals loading fetch
-  const [mealListLoading, setMealListLoading] = useState(null);
-  const [mealLists, setMealLists] = useState([]);
+  const fetchMealLists = () => {
+    for (let i = 0; i <= 4; i++) {
+      return axiosInstance({
+        method: "get",
+        url: "/random.php",
+      });
+    }
+  };
 
-  useEffect(() => {
-    fetchMealList(setMealListLoading, setMealLists);
-  }, []);
-  return { mealListLoading, mealLists };
+  const { isLoading, isError, data } = useQuery("mealLists", fetchMealLists);
+
+  const mealList = data ? data.data.meals : [];
+  const mealListLoading = isLoading;
+  const mealListError = isError;
+
+  return { mealListLoading, mealListError, mealList };
 }

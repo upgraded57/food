@@ -1,15 +1,19 @@
 import "./categories.css";
 import Topbar from "../../Components/Topbar/Topbar";
 import Category from "../../Components/Category/Category";
-import { useEffect, useState } from "react";
-import { getMealCategories } from "../../Api/Apicalls";
 import Loader from "../../Components/Loader/Loader";
+import { useQuery } from "react-query";
+import { axiosInstance } from "../../Api/AxiosInstance";
 export default function Categories() {
-  const [loading, setLoading] = useState(true);
-  const [mealCategories, setMealCategories] = useState([]);
-  useEffect(() => {
-    getMealCategories(setLoading, setMealCategories);
-  }, []);
+  const getMealCategories = () => {
+    return axiosInstance({
+      method: "get",
+      url: "/categories.php",
+    });
+  };
+
+  const { isLoading, data } = useQuery("mealCategories", getMealCategories);
+  const mealCategories = data ? data.data.categories : [];
 
   const bgArray = [
     "(90deg, #3ad59f 0%, #f8ff00 100%)",
@@ -32,7 +36,7 @@ export default function Categories() {
     <>
       <Topbar />
       <div className="categories">
-        {loading ? (
+        {isLoading ? (
           <Loader type="list" />
         ) : (
           mealCategories.map((category) => {

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../Area/area.css";
+import "../../Components/Search/search.css";
 import Topbar from "../../Components/Topbar/Topbar";
-import Search from "../../Components/Search/Search";
 import SectionHead from "../../Components/SectionHead/SectionHead";
 import { axiosInstance } from "../../Api/AxiosInstance";
 
@@ -10,39 +10,26 @@ import { Link } from "react-router-dom";
 import Loader from "./../../Components/Loader/Loader";
 import { toast } from "react-hot-toast";
 import { FiSearch } from "react-icons/fi";
+import { useQuery } from "react-query";
 
 export default function Ingredients() {
-  const [loading, setLoading] = useState(true);
-  const [ingredients, setIngredients] = useState([]);
   const [filteredIngredients, setFilteredIngredients] = useState([]);
-  const fetchIngredients = async () => {
-    setLoading(true);
-    await axiosInstance({
+
+  const fetchIngredients = () => {
+    return axiosInstance({
       method: "get",
       url: "/list.php",
       params: {
         i: "list",
       },
-    })
-      .then((res) => {
-        if (res.data.meals === null) {
-          setIngredients([]);
-        } else {
-          setIngredients(res.data.meals);
-          setFilteredIngredients(res.data.meals);
-        }
-      })
-      .catch((err) => {
-        console.log(err.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    });
   };
+  const { isLoading, data } = useQuery("ingredients", fetchIngredients);
 
+  const ingredients = data ? data.data.meals : [];
   useEffect(() => {
-    fetchIngredients();
-  }, []);
+    setFilteredIngredients(ingredients);
+  }, [data]);
 
   const [pagination, setPagination] = useState(9);
 
@@ -69,7 +56,11 @@ export default function Ingredients() {
       <div className="search">
         <form onSubmit={(e) => e.preventDefault()}>
           <FiSearch />
-          <input type="text" placeholder="Search" onChange={searchMeal} />
+          <input
+            type="text"
+            placeholder="Search ingredient..."
+            onChange={searchMeal}
+          />
         </form>
       </div>
       <SectionHead
@@ -78,7 +69,7 @@ export default function Ingredients() {
       />
 
       <div className="area">
-        {loading ? (
+        {isLoading ? (
           <div className="area__loader">
             <Loader type="list" />
           </div>

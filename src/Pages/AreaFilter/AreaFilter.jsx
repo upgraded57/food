@@ -4,8 +4,7 @@ import Search from "../../Components/Search/Search";
 import SectionHead from "../../Components/SectionHead/SectionHead";
 import "../Home/home.css";
 import "./areafilter.css";
-import { useEffect, useState } from "react";
-import { getMealsByArea } from "../../Api/Apicalls";
+import { useState } from "react";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 // Import Swiper React components
@@ -20,15 +19,24 @@ import "swiper/css/pagination";
 import MealList from "../../Components/MealList/MealList";
 import toast from "react-hot-toast";
 import Loader from "../../Components/Loader/Loader";
+import { axiosInstance } from "../../Api/AxiosInstance";
+import { useQuery } from "react-query";
 
 export default function CategoriesFilter() {
   const { area } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [meals, setMeals] = useState([]);
+  const getMealsByArea = () => {
+    return axiosInstance({
+      method: "get",
+      url: "/filter.php",
+      params: {
+        a: area,
+      },
+    });
+  };
 
-  useEffect(() => {
-    getMealsByArea(setLoading, setMeals, area);
-  }, []);
+  const { isLoading, data } = useQuery(["getAreaMeals", area], getMealsByArea);
+
+  const meals = data ? data.data.meals : [];
 
   const bgArray = [
     "(90deg, #3ad59f 0%, #f8ff00 100%)",
@@ -36,15 +44,6 @@ export default function CategoriesFilter() {
     "(90deg, #c67700 0%, #fcff9e 100%)",
     "(90deg, #22C1C3 0%, #FDBB2D 100%)",
     "(90deg, #FC466B 0%, #3F5EFB 100%)",
-    "(90deg, #000851 0%, #1CB5E0 100%)",
-    "(90deg, #c67700 0%, #fcff9e 100%)",
-    "(90deg, #00C9FF 0%, #92FE9D 100%)",
-    "(90deg, #3F2B96 0%, #A8C0FF 100%)",
-    "(90deg, #008552  0%, #9ebd13 100%)",
-    "(90deg, #A100FFFF 0%, #71C4FFFF 100%)",
-    "(90deg, #b70306 0%, #ffb76b 100%)",
-    "(90deg, #5e1784 0%, #b7deed 100%)",
-    "(90deg, #175613 0%, #f2e863 100%)",
   ];
 
   const [pageNum, setPageNum] = useState(9);
@@ -67,7 +66,7 @@ export default function CategoriesFilter() {
       />
 
       <div className="categoriesfilter">
-        {loading ? (
+        {isLoading ? (
           <Loader type="carousel" />
         ) : (
           <Swiper
@@ -86,7 +85,7 @@ export default function CategoriesFilter() {
                     to={`/meal/${meal.idMeal}`}
                     className="home__highlights-reel"
                     style={{
-                      background: `linear-gradient${bgArray[index + 6]}`,
+                      background: `linear-gradient${bgArray[index]}`,
                     }}
                   >
                     <div className="home__highlights-reel-content">
@@ -123,7 +122,7 @@ export default function CategoriesFilter() {
 
       <div className="categoriesfilter">
         <div className="categoriesfilter__list">
-          {loading ? (
+          {isLoading ? (
             <Loader type="list" />
           ) : (
             meals.slice(0, pageNum).map((meal) => {

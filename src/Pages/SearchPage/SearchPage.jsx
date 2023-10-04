@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import "./searchpage.css";
@@ -10,17 +10,28 @@ import MealList from "../../Components/MealList/MealList";
 import tempFilterImg1 from "../../assets/images/meal1.png";
 import tempFilterImg2 from "../../assets/images/meal2.png";
 import noResultImg from "../../assets/images/404img.png";
-import { searchMealByName } from "../../Api/Apicalls";
 import Loader from "../../Components/Loader/Loader";
+import { useQuery } from "react-query";
+import { axiosInstance } from "../../Api/AxiosInstance";
 
 export default function SearchPage() {
   const { search_query } = useParams();
-  const [searchLoading, setSearchLoading] = useState(true);
-  const [searchResults, setSearchResults] = useState([]);
 
-  useEffect(() => {
-    searchMealByName(search_query, setSearchLoading, setSearchResults);
-  }, [search_query]);
+  const searchMealByName = () => {
+    return axiosInstance({
+      method: "get",
+      url: "/search.php?",
+      params: {
+        s: search_query,
+      },
+    });
+  };
+  const { isLoading, data } = useQuery(
+    ["searchMeal", search_query],
+    searchMealByName
+  );
+
+  const searchResults = data && data.data.meals ? data.data.meals : [];
 
   const [filters, setFilters] = useState([]);
 
@@ -84,13 +95,13 @@ export default function SearchPage() {
       </div>
 
       <div className="searchPage__results">
-        {searchLoading ? (
+        {isLoading ? (
           <Loader type="list" />
         ) : searchResults.length < 1 ? (
           <span className="no-result">
             <img src={noResultImg} alt="" />
             <p className="text-small">
-              Your search didn't return any result! Try again with some other
+              Your search did not return any result! Try again with some other
               keywords
             </p>
           </span>

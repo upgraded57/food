@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./topbar.css";
 
 import userImg from "../../assets/images/user.jpg";
@@ -12,8 +12,9 @@ import { FiSearch } from "react-icons/fi";
 import { PiCarrot } from "react-icons/pi";
 import { Link, useNavigate } from "react-router-dom";
 import TopSpace from "../TopSpace/TopSpace";
-import axios from "axios";
-import { getRandomMeal } from "../../Api/Apicalls";
+import { axiosInstance } from "../../Api/AxiosInstance";
+import { useQuery } from "react-query";
+import { getUserIp } from "../../Api/Apicalls";
 
 export default function Topbar() {
   const navigate = useNavigate();
@@ -24,35 +25,18 @@ export default function Topbar() {
   const [locationError, setLocationError] = useState(false);
 
   useEffect(() => {
-    setLocationLoading(true);
-    const getUserIp = async () => {
-      await axios
-        .get("https://api.ipify.org?format=json")
-        .then((res) =>
-          axios
-            .get(`http://ip-api.com/json/${res.data.ip}?fields=32789`)
-            .then((res) => setUserLocation(res.data))
-            .catch((err) => {
-              console.log(err.message);
-              setLocationError(true);
-            })
-            .finally(() => {
-              setLocationLoading(false);
-            })
-        )
-        .catch(() => setLocationError(true))
-        .finally(() => {
-          setLocationLoading(false);
-        });
-    };
-    getUserIp();
+    getUserIp(setLocationLoading, setUserLocation, setLocationError);
   }, []);
 
-  const [randomMeal, setRandomMeal] = useState({});
+  const getRandomMeal = () => {
+    return axiosInstance({
+      method: "get",
+      url: "/random.php",
+    });
+  };
 
-  useEffect(() => {
-    getRandomMeal(setRandomMeal);
-  }, []);
+  const { data } = useQuery("randomMeal", getRandomMeal);
+  const randomMeal = data ? data.data.meals[0] : {};
 
   return (
     <>
@@ -73,7 +57,7 @@ export default function Topbar() {
                 <p className="text-small">{`${userLocation.city} - ${userLocation.region}, ${userLocation.country}`}</p>
               )
             ) : (
-              <p className="text-small">Couldn't get your location</p>
+              <p className="text-small">Could not determine your location</p>
             )}
           </div>
           <Link to="/profile" className="top-user">

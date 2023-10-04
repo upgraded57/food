@@ -1,13 +1,18 @@
-import { useEffect, useState } from "react";
-import { fetchMeal } from "../Api/Apicalls";
+import { useQuery } from "react-query";
+import { axiosInstance } from "../Api/AxiosInstance";
 
 export default function useFetchMeals() {
-  const [loading, setLoading] = useState(null);
-  const [meals, setMeals] = useState([]);
+  const fetchMeal = () => {
+    return axiosInstance({
+      method: "get",
+      url: "/random.php",
+    });
+  };
 
-  useEffect(() => {
-    fetchMeal(setLoading, setMeals);
-  }, []);
+  const { isLoading, isError, data } = useQuery("fetchMeal", fetchMeal);
+  const meals = data ? data.data.meals : [];
+  const mealLoading = isLoading;
+  const mealError = isLoading;
 
-  return { loading, meals };
+  return { mealLoading, mealError, meals };
 }

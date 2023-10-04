@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import "./arrivables.css";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
@@ -12,8 +11,8 @@ import useFetchMeals from "../../Hooks/useFetchMeals";
 import Loader from "../../Components/Loader/Loader";
 
 export default function Arrivables() {
-  const { mealListLoading, mealLists } = useFetchMealLists();
-  const { loading, meals } = useFetchMeals();
+  const { mealListLoading, mealList } = useFetchMealLists();
+  const { mealLoading, meals } = useFetchMeals();
 
   return (
     <div className="arrivables">
@@ -27,7 +26,7 @@ export default function Arrivables() {
       />
 
       <div className="arrivables__meal-cards">
-        {loading ? (
+        {mealLoading ? (
           <Loader type="card" />
         ) : (
           meals.map((meal) => {
@@ -47,8 +46,8 @@ export default function Arrivables() {
         {mealListLoading ? (
           <Loader type="list" />
         ) : (
-          mealLists.map((mealList) => {
-            return <MealList key={mealList.idMeal} meal={mealList} />;
+          mealList.map((meal) => {
+            return <MealList key={meal.idMeal} meal={meal} />;
           })
         )}
       </div>
