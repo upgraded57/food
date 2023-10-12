@@ -26,7 +26,7 @@ import useFetchMeals from "../../Hooks/useFetchMeals";
 import Loader from "../../Components/Loader/Loader";
 
 export default function Home() {
-  const { mealListLoading, mealList } = useFetchMealLists();
+  const { mealListLoading, mealLists } = useFetchMealLists();
   const { mealLoading, meals } = useFetchMeals();
 
   return (
@@ -145,7 +145,7 @@ export default function Home() {
           {mealListLoading ? (
             <Loader type="list" />
           ) : (
-            mealList.map((meal) => {
+            mealLists.map((meal) => {
               return <MealList key={meal.idMeal} meal={meal} />;
             })
           )}

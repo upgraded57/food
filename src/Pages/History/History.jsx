@@ -6,7 +6,7 @@ import Loader from "../../Components/Loader/Loader";
 import TopSpace from "./../../Components/TopSpace/TopSpace";
 
 export default function History() {
-  const { mealListLoading, mealList } = useFetchMealLists();
+  const { mealListLoading, mealLists } = useFetchMealLists();
   return (
     <div className="history">
       <div className="history__top">Booking History</div>
@@ -14,7 +14,7 @@ export default function History() {
         {mealListLoading ? (
           <Loader type="list" />
         ) : (
-          mealList.map((meal) => {
+          mealLists.map((meal) => {
             return <MealList key={meal.idMeal} meal={meal} history />;
           })
         )}

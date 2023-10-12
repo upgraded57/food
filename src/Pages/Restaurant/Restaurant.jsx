@@ -36,7 +36,7 @@ export default function Restaurant() {
   const { isLoading, data } = useQuery(["fetchMeal", meal_id], fetchMealById);
   const meal = data ? data.data.meals[0] : {};
 
-  const { mealListLoading, mealList } = useFetchMealLists();
+  const { mealListLoading, mealLists } = useFetchMealLists();
 
   // show image modal
   const [imageModal, setImageModal] = useState(false);
@@ -136,7 +136,7 @@ export default function Restaurant() {
         {mealListLoading ? (
           <Loader type="list" />
         ) : (
-          mealList.slice(0, 4).map((meal) => {
+          mealLists.slice(0, 4).map((meal) => {
             return <MealList key={meal.idMeal} meal={meal} history />;
           })
         )}
